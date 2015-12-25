@@ -1,0 +1,120 @@
+@black: rgba(0, 0, 0, .91);
+@white: rgba(255, 255, 255, .91);
+@olive: #B5CC18;
+@green: #21BA45;
+@yellow: #FBBD08;
+@orange: #F2711C;
+@red: #DB2828;
+@blue: #2185D0;
+
+#url-input-box {
+  margin-top: 7em;
+  margin-bottom: 1.2em;
+}
+
+#results-box, #summary-box {
+  margin-bottom: 4em;
+}
+
+.ui.centered.inverted.card {
+  .ui.header {
+    font-size: 4.4em;
+  }
+}
+.header.item {
+  .ui.header {
+    a {
+      color: @black;
+    }
+  }
+}
+.ui.card {
+  .content.green {
+    background-color: @green;
+    &:hover {
+      background-color: saturate(@green, 10%);
+    }
+  }
+  .content.olive {
+    background-color: @olive;
+    &:hover {
+      background-color: saturate(@olive, 10%);
+    }
+  }
+  .content.yellow {
+    background-color: @yellow;
+    &:hover {
+      background-color: saturate(@yellow, 10%);
+    }
+  }
+  .content.orange {
+    background-color: @orange;
+    &:hover {
+      background-color: saturate(@orange, 10%);
+    }
+  }
+  .content.red {
+    background-color: @red;
+    &:hover {
+      background-color: saturate(@red, 10%);
+    }
+  }
+  .content.blue {
+    background-color: @blue;
+    &:hover {
+      background-color: saturate(@blue, 10%);
+    }
+  }
+  .content {
+    .ui.header {
+      color: @white;
+    }
+  }
+}
+.noselect {
+  user-select: none;
+  &:hover {
+    cursor: default;
+  }
+}
+
+// Stats box colors
+.stats.green {
+  color: @green;
+}
+.stats.olive {
+  color: @olive;
+}
+.stats.yellow {
+  color: @yellow;
+}
+.stats.orange {
+  color: @orange;
+}
+.stats.red {
+  color: @red;
+}
+.stats.blue {
+  color: @blue;
+}
+
+form {
+  margin-bottom: 1em;
+  .ui.checkbox label {
+    color: @white !important;
+  }
+}
+
+#footer {
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  h4 {
+    color: @white;
+  }
+}
+
+// Align grades in stats box to center
+.ui.table td.stats {
+  text-align: center;
+}

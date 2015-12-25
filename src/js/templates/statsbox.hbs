@@ -1,0 +1,63 @@
+<div class="ui horizontal segments">
+
+  <div class="ui left aligned segment">
+    <div class="ui top attached label">Recent Seen</div>
+      <table class="ui very basic small selectable celled stackable compact table">
+        <thead>
+          <tr>
+            <th>URL</th>
+            <th>Score</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each recent}}
+          <tr>
+            <td><a href="{{url}}" target="_blank" ref="nofollow">{{truncate url}}</a></td>
+            <td class="stats {{color}} collapsing">{{stats.unsafe}} / {{stats.count}}</td>
+          </tr>
+          {{/each}}
+        </tbody>
+      </table>
+  </div>
+
+  <div class="ui left aligned segment">
+    <div class="ui top attached label">Recent Best</div>
+      <table class="ui very basic small selectable celled stackable compact table">
+        <thead>
+          <tr>
+            <th>URL</th>
+            <th>Grade</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each best}}
+          <tr>
+            <td><a href="{{url}}" target="_blank" ref="nofollow">{{truncate url}}</a></td>
+            <td class="stats {{color}}">{{mark}}</td>
+          </tr>
+          {{/each}}
+        </tbody>
+      </table>
+  </div>
+
+  <div class="ui left aligned segment">
+    <div class="ui top attached label">Recent Worst</div>
+      <table class="ui very basic small selectable celled stackable compact table">
+        <thead>
+          <tr>
+            <th>URL</th>
+            <th>Grade</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each worst}}
+          <tr>
+            <td><a href="{{url}} target="_blank" ref="nofollow"">{{truncate url}}</a></td>
+            <td class="stats {{color}}">{{mark}}</td>
+          </tr>
+          {{/each}}
+        </tbody>
+      </table>
+  </div>
+
+</div>

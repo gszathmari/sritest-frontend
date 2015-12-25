@@ -1,0 +1,56 @@
+<div class="contents">
+  <div class="ui medium left aligned header">Scripts {{generateButton scripts.unsafe}}</div>
+  <table class="ui small selectable celled compact table">
+    <tbody>
+      {{#each scripts.unsafe}}
+        <tr class="negative">
+          <td>
+            {{this}}
+          </td>
+          <td class="collapsing">
+            <i class="icon close"></i>
+            Missing SRI hash
+          </td>
+        </tr>
+      {{/each}}
+      {{#each scripts.safe}}
+        <tr class="positive">
+          <td>
+            {{this}}
+          </td>
+          <td class="collapsing">
+            <i class="icon checkmark"></i>
+            SRI hash detected
+          </td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
+  <div class="ui medium left aligned header">Stylesheets {{generateButton stylesheets.unsafe}}</div>
+    <table class="ui small selectable celled compact table">
+      <tbody>
+        {{#each stylesheets.unsafe}}
+          <tr class="negative">
+            <td>
+              {{this}}
+            </td>
+            <td class="collapsing">
+              <i class="icon close"></i>
+              Missing SRI hash
+            </td>
+          </tr>
+        {{/each}}
+        {{#each stylesheets.safe}}
+          <tr class="positive">
+            <td>
+              {{this}}
+            </td>
+            <td class="collapsing">
+              <i class="icon checkmark"></i>
+              SRI hash detected
+            </td>
+          </tr>
+        {{/each}}
+      </tbody>
+    </table>
+</div>

@@ -1,0 +1,59 @@
+<div class="contents">
+
+  <div class="ui grid">
+    <div id="mark-box" class="three wide center aligned column">
+      <div class="ui centered inverted {{color}} card">
+        <div class="content {{color}}">
+          <h1 class="ui header noselect">
+            {{mark}}
+          </h1>
+        </div>
+        <div class="extra noselect">
+          {{tags.unsafe}} / {{tags.count}}
+        </div>
+      </div>
+    </div>
+
+    <div class="thirteen wide column">
+      <table class="ui large very basic single line table">
+        <tbody>
+          <tr>
+            <td>
+              <h5 class="ui header">Site</h5>
+            </td>
+            <td>{{truncateSummary url}}</td>
+          </tr>
+          <tr>
+            <td>
+              <h5 class="ui header">Scan Date</h5>
+            </td>
+            <td>{{formatDate submitted}}</td>
+          </tr>
+          <tr>
+            <td>
+              <h5 class="ui header">Status Code</h5>
+            </td>
+            <td>HTTP {{statusCode}}</td>
+          </tr>
+          <tr>
+            <td>
+              <h5 class="ui header">Scripts</h5>
+            </td>
+            <td>
+              {{scripts.unsafe}} / {{scripts.count}}
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <h5 class="ui header">Stylesheets</h5>
+            </td>
+            <td>
+              {{stylesheets.unsafe}} / {{stylesheets.count}}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</div>

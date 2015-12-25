@@ -1,0 +1,198 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>HTML SRI Tester</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Place favicon.ico in the root directory -->
+
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/app.css">
+  <link rel="stylesheet" href="css/vendor/semantic.min.css">
+  <script src="js/modernizr.js"></script>
+
+  <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml">
+
+  <!-- Facebook -->
+  <meta property="og:title" content="HTML SRI Tester">
+  <meta property="og:description" content="Test your website for SRI hashes">
+  <meta property="og:image" content="https://sritest.io/img/facebook.png">
+
+  <!-- Twitter card -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:creator" content="@gszathmari">
+  <meta name="twitter:url" content="https://sritest.io">
+  <meta name="twitter:title" content="HTML SRI Tester">
+  <meta name="twitter:description" content="Test your website for SRI hashes">
+  <meta name="twitter:image" content="https://sritest.io/img/twitter-card.png">
+
+  <!-- DNS prefetching -->
+  <link rel="dns-prefetch" href="//api.sritest.io">
+  <link rel="dns-prefetch" href="//ajax.googleapis.com">
+  <link rel="dns-prefetch" href="//blog.gaborszathmari.me">
+  <link rel="dns-prefetch" href="//developer.mozilla.org">
+
+  <!-- API preconnecting -->
+  <link rel="preconnect" href="https://api.sritest.io">
+
+  <!-- Page prefetching -->
+  <!-- <link rel="prerender" href="https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity" /> -->
+
+  <!-- @ifdef CI -->
+    <!-- Rollbar -->
+    <script>
+    var _rollbarConfig = {
+        accessToken: "acb7aa9774504838bbb60b0d800348b2",
+        captureUncaught: true,
+        payload: {
+            environment: "production"
+        }
+    };
+    // Rollbar Snippet
+    !function(r){function o(e){if(t[e])return t[e].exports;var n=t[e]={exports:{},id:e,loaded:!1};return r[e].call(n.exports,n,n.exports,o),n.loaded=!0,n.exports}var t={};return o.m=r,o.c=t,o.p="",o(0)}([function(r,o,t){"use strict";var e=t(1).Rollbar,n=t(2);_rollbarConfig.rollbarJsUrl=_rollbarConfig.rollbarJsUrl||"https://d37gvrvc0wt4s1.cloudfront.net/js/v1.8/rollbar.min.js";var a=e.init(window,_rollbarConfig),i=n(a,_rollbarConfig);a.loadFull(window,document,!_rollbarConfig.async,_rollbarConfig,i)},function(r,o){"use strict";function t(r){return function(){try{return r.apply(this,arguments)}catch(o){try{console.error("[Rollbar]: Internal error",o)}catch(t){}}}}function e(r,o,t){window._rollbarWrappedError&&(t[4]||(t[4]=window._rollbarWrappedError),t[5]||(t[5]=window._rollbarWrappedError._rollbarContext),window._rollbarWrappedError=null),r.uncaughtError.apply(r,t),o&&o.apply(window,t)}function n(r){var o=function(){var o=Array.prototype.slice.call(arguments,0);e(r,r._rollbarOldOnError,o)};return o.belongsToShim=!0,o}function a(r){this.shimId=++s,this.notifier=null,this.parentShim=r,this._rollbarOldOnError=null}function i(r){var o=a;return t(function(){if(this.notifier)return this.notifier[r].apply(this.notifier,arguments);var t=this,e="scope"===r;e&&(t=new o(this));var n=Array.prototype.slice.call(arguments,0),a={shim:t,method:r,args:n,ts:new Date};return window._rollbarShimQueue.push(a),e?t:void 0})}function l(r,o){if(o.hasOwnProperty&&o.hasOwnProperty("addEventListener")){var t=o.addEventListener;o.addEventListener=function(o,e,n){t.call(this,o,r.wrap(e),n)};var e=o.removeEventListener;o.removeEventListener=function(r,o,t){e.call(this,r,o&&o._wrapped?o._wrapped:o,t)}}}var s=0;a.init=function(r,o){var e=o.globalAlias||"Rollbar";if("object"==typeof r[e])return r[e];r._rollbarShimQueue=[],r._rollbarWrappedError=null,o=o||{};var i=new a;return t(function(){if(i.configure(o),o.captureUncaught){i._rollbarOldOnError=r.onerror,r.onerror=n(i);var t,a,s="EventTarget,Window,Node,ApplicationCache,AudioTrackList,ChannelMergerNode,CryptoOperation,EventSource,FileReader,HTMLUnknownElement,IDBDatabase,IDBRequest,IDBTransaction,KeyOperation,MediaController,MessagePort,ModalWindow,Notification,SVGElementInstance,Screen,TextTrack,TextTrackCue,TextTrackList,WebSocket,WebSocketWorker,Worker,XMLHttpRequest,XMLHttpRequestEventTarget,XMLHttpRequestUpload".split(",");for(t=0;t<s.length;++t)a=s[t],r[a]&&r[a].prototype&&l(i,r[a].prototype)}return r[e]=i,i})()},a.prototype.loadFull=function(r,o,e,n,a){var i=function(){var o;if(void 0===r._rollbarPayloadQueue){var t,e,n,i;for(o=new Error("rollbar.js did not load");t=r._rollbarShimQueue.shift();)for(n=t.args,i=0;i<n.length;++i)if(e=n[i],"function"==typeof e){e(o);break}}"function"==typeof a&&a(o)},l=!1,s=o.createElement("script"),u=o.getElementsByTagName("script")[0],p=u.parentNode;s.crossOrigin="",s.src=n.rollbarJsUrl,s.async=!e,s.onload=s.onreadystatechange=t(function(){if(!(l||this.readyState&&"loaded"!==this.readyState&&"complete"!==this.readyState)){s.onload=s.onreadystatechange=null;try{p.removeChild(s)}catch(r){}l=!0,i()}}),p.insertBefore(s,u)},a.prototype.wrap=function(r,o){try{var t;if(t="function"==typeof o?o:function(){return o||{}},"function"!=typeof r)return r;if(r._isWrap)return r;if(!r._wrapped){r._wrapped=function(){try{return r.apply(this,arguments)}catch(o){throw o._rollbarContext=t()||{},o._rollbarContext._wrappedSource=r.toString(),window._rollbarWrappedError=o,o}},r._wrapped._isWrap=!0;for(var e in r)r.hasOwnProperty(e)&&(r._wrapped[e]=r[e])}return r._wrapped}catch(n){return r}};for(var u="log,debug,info,warn,warning,error,critical,global,configure,scope,uncaughtError".split(","),p=0;p<u.length;++p)a.prototype[u[p]]=i(u[p]);r.exports={Rollbar:a,_rollbarWindowOnError:e}},function(r,o){"use strict";r.exports=function(r,o){return function(t){if(!t&&!window._rollbarInitialized){var e=window.RollbarNotifier,n=o||{},a=n.globalAlias||"Rollbar",i=window.Rollbar.init(n,r);i._processShimQueue(window._rollbarShimQueue||[]),window[a]=i,window._rollbarInitialized=!0,e.processPayloads()}}}}]);
+    // End Rollbar Snippet
+    </script>
+  <!-- @endif -->
+
+</head>
+
+<body>
+  <!--[if lt IE 8]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+  <!-- Add your site or application content here -->
+  <div class="ui middle aligned center aligned grid">
+
+    <div class="ui top fixed large borderless menu">
+      <div class="header item">
+        <h2 class="ui header"><a href="https://sritest.io">sritest.io</a></h2>
+      </div>
+      <div class="right menu">
+        <a class="item" href="https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity" target="_blank">
+                    About
+                  </a>
+        <a class="item" href="https://blog.gaborszathmari.me" target="_blank">
+                    Blog
+                  </a>
+        <a class="item" href="mailto:hello@sritest.io">
+                    Contact
+                  </a>
+      </div>
+    </div>
+
+    <div class="twelve wide column">
+
+      <!-- URL input box -->
+      <div id="url-input-box">
+        <div class="ui attached blue inverted very padded segment">
+          <h1 class="ui header">Scan for Subresource Integrity (SRI)</h1>
+          <div class="ui centered grid">
+            <div class="ten wide column">
+              <form class="ui form" id="submit-task-form" method="post">
+                <div class="inline fields">
+                  <div id="remote-url-field" class="sixteen wide field">
+                    <input type="text" id="remote-url" placeholder="http://" autocomplete="off">
+                  </div>
+                  <div class="field">
+                    <button class="ui button" type="submit">Scan</button>
+                  </div>
+                </div>
+                <div class="ui checkbox">
+                  <input type="checkbox" id="hide-results" tabindex="0" class="hidden">
+                  <label>Hide from Statistics</label>
+                </div>
+              </form>
+              <div id="message-box"></div>
+            </div>
+          </div>
+        </div>
+        <div class="ui bottom attached info message">
+          <i class="info circle icon"></i>This service allows you to scan any website for <a href="https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity" target="_blank">Subresource Integrity (SRI)</a> cryptographic hashes
+        </div>
+      </div>
+
+      <!-- Statistics box -->
+      <div id="stats-box" hidden></div>
+
+      <!-- Please Wait Loader -->
+
+      <!-- Results box -->
+      <div id="results-box" hidden>
+
+        <!-- Summary of results -->
+        <div class="ui segment">
+          <div class="ui top attached label">Summary</div>
+          <div id="results-box-summary">
+          </div>
+        </div>
+
+        <!-- Detailed results -->
+        <div class="ui segment">
+          <div class="ui top attached label">Results</div>
+          <div id="results-box-detailed">
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+  <div id="footer" class="ui vertical right aligned inverted grey footer segment">
+    <div class="ui container">
+      <h4 class="ui header">Gabor Szathmari &copy; 2015</h4>
+    </div>
+  </div>
+
+  <!-- @ifdef CI -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"
+      integrity="sha256-ImQvICV38LovIsvla2zykaCTdEh1Z801Y+DSop91wMU=
+                 sha384-8gBf6Y4YYq7Jx97PIqmTwLPin4hxIzQw5aDmUg/DDhul9fFpbbLcLh3nTIIDJKhx
+                 sha512-AFwxAkWdvxRd9qhYYp1qbeRZj6/iTNmJ2GFwcxsMOzwwTaRwz2a/2TX225Ebcj3whXte1WGQb38cXE5j7ZQw3g=="
+      crossorigin="anonymous"></script>
+  <!-- @endif -->
+  <script>
+    window.jQuery || document.write('<script src="js/vendor/jquery.js"><\/script>')
+  </script>
+  <script src="js/vendor/semantic.min.js"></script>
+  <script src="js/ui.js" defer></script>
+  <script src="js/main.js" defer></script>
+
+  <!-- @ifdef CI -->
+    <!-- Google Analytics Code -->
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-71702762-1', 'auto');
+      ga('send', 'pageview');
+    </script>
+    <!-- End of Google Analytics Code -->
+  <!-- @endif -->
+
+  <!-- @ifdef CI -->
+    <!-- Google Tag Manager -->
+    <noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-MVZKMH"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    '//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-MVZKMH');</script>
+    <!-- End Google Tag Manager -->
+  <!-- @endif -->
+
+  <div id="commit-id" hidden>
+    <!-- @echo CI_COMMIT_ID -->
+  </div>
+
+</body>
+
+</html>
