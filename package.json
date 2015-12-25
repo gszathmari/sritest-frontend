@@ -2,10 +2,10 @@
   "name": "sritest-frontend",
   "version": "0.1.0",
   "description": "HTML Subresource Integrity Tester Frontend",
-  "private": true,
+  "license": "MIT",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "gulp"
+    "build": "gulp build"
   },
   "repository": {
     "type": "git",
@@ -22,9 +22,10 @@
     "web"
   ],
   "homepage": "https://bitbucket.org/gszathmari/sritest-frontend#readme",
-  "devDependencies": {
+  "dependencies": {
     "browser-sync": "^2.10.0",
     "browserify": "^12.0.1",
+    "coffeeify": "^2.0.1",
     "gulp": "^3.9.0",
     "gulp-autoprefixer": "^3.1.0",
     "gulp-clean": "^0.3.1",
@@ -72,6 +73,5 @@
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.1.0",
     "watchify": "^3.6.1"
-  },
-  "dependencies": {}
+  }
 }
