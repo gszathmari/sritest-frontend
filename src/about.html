@@ -4,8 +4,8 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <title>HTML SRI Tester</title>
-  <meta name="description" content="Scan websites for Subresource Integrity (SRI) hashes">
+  <title>About - HTML SRI Tester</title>
+  <meta name="description" content="What does this website? Why do I need a Subresource Integrity (SRI) hash? How can I improve my website's security?">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <!-- Place favicon.ico in the root directory -->
@@ -40,7 +40,7 @@
   <link rel="preconnect" href="https://api.sritest.io">
 
   <!-- Page prefetching -->
-  <link rel="prerender" href="https://sritest.io/about.html" />
+  <link rel="prerender" href="https://sritest.io/" />
 
   <!-- @ifdef CI -->
     <!-- Rollbar -->
@@ -81,7 +81,7 @@
               <a class="item" href="https://securityheaders.io/" target="_blank">Security Headers</a>
             </div>
         </div>
-        <a class="item" href="/about.html">
+        <a class="active item" href="/about.html">
             About
         </a>
         <a class="item" href="mailto:hello@sritest.io">
@@ -90,59 +90,100 @@
       </div>
     </div>
 
-    <div class="twelve wide column">
+    <div id="contents">
+      <div class="ui text container">
+        <div class="ui grid">
+          <div class="five wide column">
+            <a href="https://blog.gaborszathmari.me" target="_blank">
+              <img class="ui fluid rounded image" src="/img/gabor.jpg" alt="Gabor Szathmari">
+            </a>
+          </div>
+          <div class="eleven wide column">
+            <h1 class="ui header">About the Project</h1>
+            <p>
+              This free service allows you to scan any website for Subresource
+              Integrity (SRI) usage.
+            </p>
 
-      <!-- URL input box -->
-      <div id="url-input-box">
-        <div class="ui attached blue inverted very padded segment">
-          <h1 class="ui header">Scan for Subresource Integrity (SRI)</h1>
-          <div class="ui centered grid">
-            <div class="ten wide column">
-              <form class="ui form" id="submit-task-form" method="post">
-                <div class="inline fields">
-                  <div id="remote-url-field" class="sixteen wide field">
-                    <input type="text" id="remote-url" placeholder="http://" autocomplete="off">
-                  </div>
-                  <div class="field">
-                    <button class="ui button" type="submit">Scan</button>
-                  </div>
-                </div>
-                <div class="ui checkbox">
-                  <input type="checkbox" id="hide-results" tabindex="0" class="hidden">
-                  <label>Hide from Statistics</label>
-                </div>
-              </form>
-              <div id="message-box"></div>
-            </div>
+            <p>
+              JavaScript and CSS stylesheet assets can be protected with
+              cryptographic hashes to prevent them from tampering.
+            </p>
+
+            <h2 class="ui header">The Problem with CDN Assets</h2>
+            <p>
+              Website publishers tend to trust Content Delivery Networks (CDN)
+              to host some of their content. Publishers rely on third-parties,
+              such as <a href="https://developers.google.com/speed/libraries/">Google</a>,
+              <a href="https://www.jsdelivr.com">jsdelivr</a> or <a href="https://cdnjs.com">cdnjs</a>, to serve
+              content close to the website visitors.
+            </p>
+
+            <p>
+              CDNs are great, because they serve assets from multiple datacenters
+              across the globe. Therefore, a website visitor will have a better
+              experience as the page loads quicker. In addition, the uptime of
+              third-party CDNs are <a href="https://www.cdnperf.com/">close to 100%</a>.
+            </p>
+
+            <p>
+              However, there is a lot of trust involved here. JavaScript and
+              CSS stylesheets can be abused to
+              <a href="https://blogs.sophos.com/2015/07/21/a-closer-look-at-the-angler-exploit-kit/">exploit browsers</a>
+              or <a href="http://arstechnica.com/security/2015/04/ddos-attacks-that-crippled-github-linked-to-great-firewall-of-china/">DDoS websites</a>.
+            </p>
+
+            <h2 class="ui header">Verifying CDN Assets</h2>
+            <p>
+              The solution to verify the third-party assets is using cryptographic
+              hashes. These hashes, standardized by
+              <a href="http://www.w3.org/TR/SRI/">W3C</a>, function similarly to
+              the well-known md5 or sha hashes.
+            </p>
+
+            <p>
+              We generate SRI hashes and apppend them to out HTML assets where
+              JavaScript and CSS stylesheets are included.
+            </p>
+
+            <p>
+              When the website visitor's browser downloads the remote asset from
+              the CDN, the browser will verify the cryptographic hash. If the
+              CDN-served content is modified at the provider, or along the way
+              to the website visitor, the browser will not execute the
+              downloaded JavaScript or CSS stylesheet.
+            </p>
+
+            <h2 class="ui header">Grading Websites for SRI</h2>
+            <p>
+              So SRI is a great idea to improve website security and website
+              publishers all should consider adding the hashes as necessary.
+            </p>
+
+            <p>
+              The reason <a href="https://sritest.io">sritest.io</a> was born
+              is to foster the broad implementation of this protection.
+            </p>
+
+            <h1 class="ui header">About Me</h1>
+            <p>
+              I am a security consultant based in the United Kingdom.
+            </p>
+
+            <p>
+              I have experience with architectural design, policy- and risk
+              management, and incident management. I have also been dealing with
+              application security, vulnerability management and event log
+              management. I love to develop software in my free time.
+            </p>
+
+            <p>
+              Check out <a href="https://blog.gaborszathmari.me/my-projects/">my
+              blog</a> for more interesting projects.
+            </p>
+
           </div>
         </div>
-        <div class="ui bottom attached info message">
-          <i class="info circle icon"></i>This service allows you to scan any website for <a href="https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity" target="_blank">Subresource Integrity (SRI)</a> cryptographic hashes
-        </div>
-      </div>
-
-      <!-- Statistics box -->
-      <div id="stats-box" hidden></div>
-
-      <!-- Please Wait Loader -->
-
-      <!-- Results box -->
-      <div id="results-box" hidden>
-
-        <!-- Summary of results -->
-        <div class="ui segment">
-          <div class="ui top attached label">Summary</div>
-          <div id="results-box-summary">
-          </div>
-        </div>
-
-        <!-- Detailed results -->
-        <div class="ui segment">
-          <div class="ui top attached label">Results</div>
-          <div id="results-box-detailed">
-          </div>
-        </div>
-
       </div>
     </div>
 
