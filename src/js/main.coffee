@@ -33,10 +33,14 @@ if validator.isUUID reportID, 4
         inputField.removeClass("error")
     # Report is found, generate output and display
     else
+      # Display summary of report
       resultsSummary = templates.resultsSummary report.summary()
       $("#results-box-summary").html(resultsSummary)
+      # Display detailed results
       resultsDetailed = templates.resultsDetailed report.detailed()
       $("#results-box-detailed").html(resultsDetailed)
+      # Change page title
+      document.title = "SRI Report on #{report.URL()}"
 else
   # Get stats
   stats = new Stats
@@ -116,6 +120,8 @@ form.find(":button").click (e) ->
             # Generate detailed report
             resultsDetailed = templates.resultsDetailed report.detailed()
             $("#results-box-detailed").html(resultsDetailed)
+            # Change page title
+            document.title = "SRI Report on #{report.URL()}"
             # Scroll down to results
             $("body").animate({scrollTop: $("#results-box").offset().top - 100 }, 'slow')
       # Error when submitting task to remote API
