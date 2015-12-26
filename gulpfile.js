@@ -56,7 +56,7 @@ const paths = {
       cssVendorDirectory: 'css/vendor',
       lessFiles: 'less/*.less',
       lessDirectory: 'less/',
-      imageFiles: 'img/*',
+      imageFiles: 'img/**/*',
       imageDirectory: 'img/',
       textFiles: '*.txt',
       htmlFiles: '*.html',
