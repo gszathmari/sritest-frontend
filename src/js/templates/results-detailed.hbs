@@ -3,28 +3,36 @@
   <table class="ui small selectable fixed celled compact table">
     <thead><tr><th class="thirteen wide">Tag</th><th class="three wide">Result</th></tr></thead>
     <tbody>
-      {{#each scripts.unsafe}}
-        <tr class="negative">
-          <td>
-            {{this}}
-          </td>
-          <td class="collapsing">
-            <i class="icon close"></i>
-            Missing SRI hash
+      {{#if scripts.tags}}
+        {{#each scripts.unsafe}}
+          <tr class="negative">
+            <td>
+              {{this}}
+            </td>
+            <td class="collapsing">
+              <i class="icon close"></i>
+              Missing SRI hash
+            </td>
+          </tr>
+        {{/each}}
+        {{#each scripts.safe}}
+          <tr class="positive">
+            <td>
+              {{this}}
+            </td>
+            <td class="collapsing">
+              <i class="icon checkmark"></i>
+              SRI hash detected
+            </td>
+          </tr>
+        {{/each}}
+      {{else}}
+        <tr>
+          <td colspan="2">
+            No data
           </td>
         </tr>
-      {{/each}}
-      {{#each scripts.safe}}
-        <tr class="positive">
-          <td>
-            {{this}}
-          </td>
-          <td class="collapsing">
-            <i class="icon checkmark"></i>
-            SRI hash detected
-          </td>
-        </tr>
-      {{/each}}
+      {{/if}}
     </tbody>
   </table>
 
@@ -32,28 +40,36 @@
   <table class="ui small selectable fixed celled compact table">
     <thead><tr><th class="thirteen wide">Tag</th><th class="three wide">Result</th></tr></thead>
     <tbody>
-      {{#each stylesheets.unsafe}}
-        <tr class="negative">
-          <td>
-            {{this}}
-          </td>
-          <td class="collapsing">
-            <i class="icon close"></i>
-            Missing SRI hash
+      {{#if stylesheets.tags}}
+        {{#each stylesheets.unsafe}}
+          <tr class="negative">
+            <td>
+              {{this}}
+            </td>
+            <td class="collapsing">
+              <i class="icon close"></i>
+              Missing SRI hash
+            </td>
+          </tr>
+        {{/each}}
+        {{#each stylesheets.safe}}
+          <tr class="positive">
+            <td>
+              {{this}}
+            </td>
+            <td class="collapsing">
+              <i class="icon checkmark"></i>
+              SRI hash detected
+            </td>
+          </tr>
+        {{/each}}
+      {{else}}
+        <tr>
+          <td colspan="2">
+            No data
           </td>
         </tr>
-      {{/each}}
-      {{#each stylesheets.safe}}
-        <tr class="positive">
-          <td>
-            {{this}}
-          </td>
-          <td class="collapsing">
-            <i class="icon checkmark"></i>
-            SRI hash detected
-          </td>
-        </tr>
-      {{/each}}
+      {{/if}}
     </tbody>
   </table>
 

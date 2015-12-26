@@ -133,9 +133,11 @@ class Report
       scripts:
         unsafe: @unsafeScripts()
         safe: @safeScripts()
+        tags: _.union @unsafeScripts(), @safeScripts()
       stylesheets:
         unsafe: @unsafeStylesheets()
         safe: @safeStylesheets()
+        tags: _.union @unsafeStylesheets(), @safeStylesheets()
     return data
 
 module.exports = Report
