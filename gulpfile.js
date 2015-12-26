@@ -359,7 +359,7 @@ gulp.task('watch', function () {
 });
 
 /*
- * Build project
+ * Build project for production
  */
 gulp.task('build', function(callback) {
   runSequence('clean',
@@ -377,6 +377,24 @@ gulp.task('build', function(callback) {
               'revreplace',
               'gzip',
               'git-longhash',
+              callback
+  )
+});
+
+/*
+ * Build project for developing
+ */
+gulp.task('default', function(callback) {
+  runSequence('clean',
+              'copy-tiles',
+              'copy-favicon',
+              ['coffee-lint'],
+              ['css-dist', 'browserify-dist', 'coffee-dist', 'html-dist'],
+              'less-dist',
+              ['copy-vendor-js', 'copy-vendor-css', 'copy-semantic-ui-icons'],
+              'install-bower-packages',
+              'generate-modernizr',
+              'minimize-images',
               callback
   )
 });

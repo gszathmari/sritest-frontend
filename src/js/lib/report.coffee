@@ -7,6 +7,7 @@ config = require './config.coffee'
 class Report
   constructor: (@id) ->
     @report = null
+    @tags = null
 
   retrieve: (retries, fn) ->
     reportObj = @
@@ -27,10 +28,23 @@ class Report
       if not err and response.statusCode is 200
         data = JSON.parse body
         @report = data.results
+        @tags = @parseTags data.results
         return fn null, reportObj
       else
         error = new Error "Report is not available, please try again later"
         return fn error, reportObj
+
+  parseTags: (report) ->
+    tags = JSON.parse report.tags
+    # Filter duplicate tags out
+    data =
+      scripts:
+        safe: _.uniq tags.scripts.safe
+        unsafe: _.uniq tags.scripts.unsafe
+      stylesheets:
+        safe: _.uniq tags.stylesheets.safe
+        unsafe: _.uniq tags.stylesheets.unsafe
+    return data
 
   get: ->
     return @report
@@ -45,45 +59,36 @@ class Report
     return @report.url
 
   safeScripts: ->
-    tags = JSON.parse @report.tags
-    return tags.scripts.safe
+    return @tags.scripts.safe
 
   safeStylesheets: ->
-    tags = JSON.parse @report.tags
-    return tags.stylesheets.safe
+    return @tags.stylesheets.safe
 
   unsafeScripts: ->
-    tags = JSON.parse @report.tags
-    return tags.scripts.unsafe
+    return @tags.scripts.unsafe
 
   unsafeStylesheets: ->
-    tags = JSON.parse @report.tags
-    return tags.stylesheets.unsafe
+    return @tags.stylesheets.unsafe
 
   scripts: ->
-    tags = JSON.parse @report.tags
-    return _.union tags.scripts.safe, tags.scripts.unsafe
+    return _.union @tags.scripts.safe, @tags.scripts.unsafe
 
   stylesheets: ->
-    tags = JSON.parse @report.tags
-    return _.union tags.stylesheets.safe, tags.stylesheets.unsafe
-
-  tags: ->
-    tags = JSON.parse @report.tags
-    return _.union tags.scripts.safe,
-      tags.scripts.unsafe,
-      tags.stylesheets.safe,
-      tags.stylesheets.unsafe
+    return _.union @tags.stylesheets.safe, @tags.stylesheets.unsafe
 
   safeTags: ->
-    tags = JSON.parse @report.tags
-    return _.union tags.scripts.safe,
-      tags.stylesheets.safe
+    return _.union @tags.scripts.safe,
+      @tags.stylesheets.safe
 
   unsafeTags: ->
-    tags = JSON.parse @report.tags
-    return _.union tags.scripts.unsafe,
-      tags.stylesheets.unsafe
+    return _.union @tags.scripts.unsafe,
+      @tags.stylesheets.unsafe
+
+  getAllTags: ->
+    return _.union @tags.scripts.safe,
+      @tags.scripts.unsafe,
+      @tags.stylesheets.safe,
+      @tags.stylesheets.unsafe
 
   summary: ->
     data =
@@ -91,7 +96,7 @@ class Report
       submitted: @report.submitted
       tags:
         unsafe: @unsafeTags().length
-        count: @tags().length
+        count: @getAllTags().length
       scripts:
         unsafe: @unsafeScripts().length
         count: @scripts().length
