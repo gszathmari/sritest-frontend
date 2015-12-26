@@ -29,6 +29,8 @@ var coffee = require('gulp-coffee');
 var rev = require('gulp-rev');
 var revReplace = require("gulp-rev-replace");
 var gzip = require('gulp-gzip');
+var git = require('git-rev');
+var fs = require('fs');
 var rimraf = require('gulp-rimraf');
 
 const siteUrl = 'https://sritest.io';
@@ -71,6 +73,16 @@ const DST = './dist/';
 gulp.task('clean', function() {
     return gulp.src(DST)
         .pipe(clean());
+});
+
+/*
+ * Write Git commit longhash into file
+ */
+gulp.task('git-longhash', function () {
+    var file = DST + '/build.txt';
+    return git.long(function (longhash) {
+      fs.writeFile(file, longhash)
+    })
 });
 
 /*
@@ -355,6 +367,7 @@ gulp.task('build', function(callback) {
               'sitemap',
               'revreplace',
               'gzip',
+              'git-longhash',
               callback
   )
 });
