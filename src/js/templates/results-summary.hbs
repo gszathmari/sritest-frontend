@@ -9,7 +9,7 @@
           </h1>
         </div>
         <div class="extra noselect">
-          {{tags.unsafe}} / {{tags.count}}
+          <b>{{tags.unsafe}}</b> <i>unsafe</i> / <b>{{tags.count}}</b> <i>tags</i>
         </div>
       </div>
     </div>
@@ -40,7 +40,7 @@
               <h5 class="ui header">Scripts</h5>
             </td>
             <td>
-              {{scripts.unsafe}} / {{scripts.count}}
+              <i>Found <b>{{scripts.unsafe}}</b> unsafe scripts out of <b>{{scripts.count}}</b> script tags</i>
             </td>
           </tr>
           <tr>
@@ -48,7 +48,7 @@
               <h5 class="ui header">Stylesheets</h5>
             </td>
             <td>
-              {{stylesheets.unsafe}} / {{stylesheets.count}}
+              <i>Found <b>{{stylesheets.unsafe}}</b> unsafe stylesheets out of <b>{{stylesheets.count}}</b> stylesheet tags</i>
             </td>
           </tr>
         </tbody>
