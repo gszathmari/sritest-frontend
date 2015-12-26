@@ -268,8 +268,7 @@ gulp.task('coffee-watch', bundle);
 
 var customOpts = {
   entries: [
-      SRC+paths.jsDirectory+'/main.coffee',
-      SRC+paths.jsDirectory+'/templates/messagebox.hbs'
+      SRC+paths.jsDirectory+'/main.coffee'
   ],
   debug: true,
   transform: [coffeeify, [hbsfy, {extensions: ['hbs']}]]
@@ -297,7 +296,17 @@ function bundle() {
  * Browserify CoffeeScript files into main.js
  */
 gulp.task('browserify-dist', function () {
-  var b = browserify(customOpts);
+  var opts = {
+    entries: [
+        SRC+paths.jsDirectory+'/main.coffee'
+    ],
+    debug: true,
+    transform: [coffeeify, [hbsfy, {extensions: ['hbs']}]],
+    cache: {},
+    packageCache: {}
+  };
+
+  var b = browserify(opts);
   return b.bundle()
     .on('error', gutil.log.bind(gutil, 'Browserify Error'))
     .pipe(source('main.js'))
