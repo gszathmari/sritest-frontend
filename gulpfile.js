@@ -342,7 +342,8 @@ gulp.task('generate-modernizr', function () {
  * Generate sitemap file
  */
 gulp.task('sitemap', function () {
-    gulp.src(SRC+'**/*.html')
+    var files = [SRC+'**/*.html', '!'+SRC+'50x.html'];
+    gulp.src(files)
         .pipe(sitemap({
             siteUrl: siteUrl
         }))
