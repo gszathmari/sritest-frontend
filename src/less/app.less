@@ -118,3 +118,12 @@ form {
 .ui.table td.stats {
   text-align: center;
 }
+
+// Break long line in tables of detailed results box
+#results-box-detailed {
+  .ui.table {
+    tr td:first-child {
+      word-wrap: break-word;
+    }
+  }
+}

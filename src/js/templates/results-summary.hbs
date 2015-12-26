@@ -15,39 +15,39 @@
     </div>
 
     <div class="thirteen wide column">
-      <table class="ui large very basic single line table">
+      <table class="ui large very basic fixed single line table">
         <tbody>
           <tr>
-            <td>
+            <td class="three wide">
               <h5 class="ui header">Site</h5>
             </td>
-            <td>{{truncateSummary url}}</td>
+            <td class="thirteen wide"><a href="{{url}}" target="_blank" ref="nofollow">{{truncateSummary url}}</a></td>
           </tr>
           <tr>
-            <td>
+            <td class="three wide">
               <h5 class="ui header">Scan Date</h5>
             </td>
-            <td>{{formatDate submitted}}</td>
+            <td class="thirteen wide">{{formatDate submitted}}</td>
           </tr>
           <tr>
-            <td>
+            <td class="three wide">
               <h5 class="ui header">Status Code</h5>
             </td>
-            <td>HTTP {{statusCode}}</td>
+            <td class="thirteen wide">HTTP {{statusCode}}</td>
           </tr>
           <tr>
-            <td>
+            <td class="three wide">
               <h5 class="ui header">Scripts</h5>
             </td>
-            <td>
+            <td class="thirteen wide">
               <i>Found <b>{{scripts.unsafe}}</b> unsafe scripts out of <b>{{scripts.count}}</b> script tags</i>
             </td>
           </tr>
           <tr>
-            <td>
+            <td class="three wide">
               <h5 class="ui header">Stylesheets</h5>
             </td>
-            <td>
+            <td class="thirteen wide">
               <i>Found <b>{{stylesheets.unsafe}}</b> unsafe stylesheets out of <b>{{stylesheets.count}}</b> stylesheet tags</i>
             </td>
           </tr>

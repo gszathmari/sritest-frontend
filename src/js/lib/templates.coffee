@@ -34,7 +34,7 @@ HandleBars.registerHelper "truncate", (string) ->
     return string
 
 HandleBars.registerHelper "truncateSummary", (string) ->
-  maxlen = 75
+  maxlen = 70
   if string.length > maxlen
     return string[0..maxlen] + "..."
   else
