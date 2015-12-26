@@ -111,7 +111,7 @@ gulp.task('revision', function() {
 
 gulp.task('revreplace', ['revision'], function(){
   var manifest = gulp.src(DST + '/rev-manifest.json');
-  return gulp.src(DST + 'index.html')
+  return gulp.src(DST + paths.htmlFiles)
     .pipe(revReplace({manifest: manifest}))
     .pipe(gulp.dest(DST));
 });
