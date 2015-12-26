@@ -11,4 +11,5 @@ lb:
 web:
   image: 'gszathmari/sritest-frontend:latest'
   autodestroy: always
-  target_num_containers: 2
+  restart: on-failure
+  target_num_containers: 1
