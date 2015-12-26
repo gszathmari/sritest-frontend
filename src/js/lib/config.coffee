@@ -1,8 +1,8 @@
 config =
   # Backend API URL
   api:
-    url: "http://api.sritest.io/api/v1/tests/"
-    stats: "http://api.sritest.io/api/v1/stats/"
+    url: "https://api.sritest.io/api/v1/tests/"
+    stats: "https://api.sritest.io/api/v1/stats/"
   options:
     # URL validator options
     validator:

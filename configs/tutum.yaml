@@ -1,0 +1,14 @@
+lb:
+  image: 'tutum/haproxy:latest'
+  links:
+    - web
+  ports:
+    - '80:80'
+  restart: always
+  roles:
+    - global
+
+web:
+  image: 'gszathmari/sritest-frontend:latest'
+  autodestroy: always
+  target_num_containers: 2
