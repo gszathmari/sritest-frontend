@@ -89,7 +89,6 @@ class Report
     data =
       url: @report.url
       submitted: @report.submitted
-      statusCode: @report.statusCode
       tags:
         unsafe: @unsafeTags().length
         count: @tags().length
@@ -115,6 +114,13 @@ class Report
       when score >= 63 then "orange"
       when isNaN(score) is true then "blue"
       else "red"
+    data.statusCode = switch
+      when @report.statusCode is "200" then "200 OK"
+      when @report.statusCode is "301" then "301 Moved Permanently"
+      when @report.statusCode is "302" then "302 Found"
+      when @report.statusCode is "404" then "404 Not Found"
+      when @report.statusCode is "500" then "500 Internal Server Error"
+      else @report.statusCode
     return data
 
   detailed: ->
