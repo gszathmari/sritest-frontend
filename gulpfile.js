@@ -33,6 +33,7 @@ var git = require('git-rev');
 var fs = require('fs');
 var rimraf = require('gulp-rimraf');
 var replace = require('gulp-replace');
+var srizer = require('gulp-srizer');
 
 const siteUrl = 'https://sritest.io';
 
@@ -148,13 +149,22 @@ gulp.task('robots', function () {
  * Process HTML files
  */
 gulp.task('html-dist', function() {
+  return gulp.src(SRC+paths.htmlFiles)
+      .pipe(preprocess())
+      .pipe($.stripComments())
+      .pipe(gulp.dest(DST));
+});
+
+/*
+ * Minify HTML files
+ */
+// We keep this separate from 'html-dist', otherwise 'generate-sri' won't work
+gulp.task('minify-html', function () {
   var opts = {
       conditionals: true,
       spare:true
   };
-  return gulp.src(SRC+paths.htmlFiles)
-      .pipe(preprocess())
-      .pipe($.stripComments())
+  return gulp.src(DST+paths.htmlFiles)
       .pipe(minifyHTML(opts))
       .pipe(gulp.dest(DST));
 });
@@ -353,6 +363,21 @@ gulp.task('sitemap', function () {
 });
 
 /*
+ * Generate SRI hashes for all local assets
+ */
+gulp.task('generate-sri', function() {
+    var files = [
+      DST + paths.htmlFiles,
+    ];
+    var options = {
+      fileExt: ['css', 'js']
+    }
+    return gulp.src(files)
+        .pipe(srizer())
+        .pipe(gulp.dest(DST));
+});
+
+/*
  * Watchers
  */
 gulp.task('watch', function () {
@@ -378,6 +403,8 @@ gulp.task('build', function(callback) {
               'minimize-images',
               'sitemap',
               'revreplace',
+              'generate-sri',
+              'minify-html',
               'gzip',
               'git-longhash',
               callback
