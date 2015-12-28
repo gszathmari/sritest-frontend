@@ -110,7 +110,7 @@ class Report
       when score >= 83 then "B"
       when score >= 73 then "C"
       when score >= 63 then "D"
-      when isNaN(score) is true then "N/A"
+      when isNaN(score) is true then "NA"
       else "F"
     data.color = switch
       when score >= 93 then "green"

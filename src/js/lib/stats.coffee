@@ -47,7 +47,7 @@ class Stats
         when result.score >= 83 then "B"
         when result.score >= 73 then "C"
         when result.score >= 63 then "D"
-        when isNaN(result.score) is true then "N/A"
+        when isNaN(result.score) is true then "NA"
         else "F"
       result.color = switch
         when result.score >= 93 then "green"
@@ -70,17 +70,13 @@ class Stats
     return @stats
 
   getBest: ->
-    stats = _.filter @stats, (item) ->
-      return isNaN(item.score) isnt true
-    results = _.sortBy stats, (item) ->
-      return item.score
-    return results.reverse()
+    return @getWorst().reverse()
 
   getWorst: ->
     stats = _.filter @stats, (item) ->
       return isNaN(item.score) isnt true
     results = _.sortBy stats, (item) ->
       return item.score
-    return results.reverse()
+    return results
 
 module.exports = Stats
