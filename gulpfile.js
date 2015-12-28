@@ -98,7 +98,11 @@ gulp.task('gzip', function() {
 });
 
 gulp.task('revision', function() {
-    var assets = [DST + paths.jsDirectory + '*.js', DST + paths.cssFiles, DST + paths.imageFiles];
+    var assets = [
+      DST + '**/*.js',
+      DST + '**/*.css',
+      DST + paths.imageFiles
+    ];
     return gulp.src(assets, {base: DST})
         .pipe(rimraf())
         .pipe(rev())
@@ -149,8 +153,11 @@ gulp.task('robots', function () {
  * Process HTML files
  */
 gulp.task('html-dist', function() {
+  var options = {
+    includeBase: SRC + 'templates/'
+  };
   return gulp.src(SRC+paths.htmlFiles)
-      .pipe(preprocess())
+      .pipe(preprocess(options))
       .pipe($.stripComments())
       .pipe(gulp.dest(DST));
 });
@@ -206,11 +213,21 @@ gulp.task('copy-semantic-ui-icons', function() {
         .pipe(gulp.dest(DST+paths.cssVendorDirectory+'/themes/default/assets/fonts/'));
 });
 
-gulp.task('install-bower-packages', function() {
-    // return bower()
-    return gulp.src(mainBowerFiles())
-        .pipe($.uglify())
+gulp.task('install-bower-packages-js', function() {
+    return gulp.src(mainBowerFiles({
+          filter: /\..*js$/i,
+          overrides: {
+            "jquery": {
+              "main": "**/jquery.min.js"
+            }
+          }
+        }))
         .pipe(gulp.dest(DST+paths.jsVendorDirectory));
+});
+
+gulp.task('install-bower-packages-css', function() {
+    return gulp.src(mainBowerFiles({filter: /\..*css$/i}))
+        .pipe(gulp.dest(DST+paths.cssVendorDirectory));
 });
 
 /*
@@ -398,7 +415,7 @@ gulp.task('build', function(callback) {
               ['css-dist', 'browserify-dist', 'coffee-dist', 'html-dist'],
               'less-dist',
               ['copy-vendor-js', 'copy-vendor-css', 'copy-semantic-ui-icons'],
-              'install-bower-packages',
+              ['install-bower-packages-js', 'install-bower-packages-css'],
               'generate-modernizr',
               'minimize-images',
               'sitemap',
@@ -422,7 +439,7 @@ gulp.task('default', function(callback) {
               ['css-dist', 'browserify-dist', 'coffee-dist', 'html-dist'],
               'less-dist',
               ['copy-vendor-js', 'copy-vendor-css', 'copy-semantic-ui-icons'],
-              'install-bower-packages',
+              ['install-bower-packages-js', 'install-bower-packages-css'],
               'generate-modernizr',
               'minimize-images',
               callback

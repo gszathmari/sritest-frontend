@@ -8,30 +8,18 @@
   <meta name="description" content="Scan your websites for Subresource Integrity (SRI) hashes. Protect JavaScript and CSS stylesheets from tampering.">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <!-- Place favicon.ico in the root directory -->
-
+  <!-- Stylesheets -->
   <link rel="stylesheet" href="/css/main.css">
   <link rel="stylesheet" href="/css/app.css">
   <link rel="stylesheet" href="/css/vendor/semantic.min.css">
+
+  <!-- Modernizr -->
   <script src="/js/modernizr.js"></script>
 
   <link rel="canonical" href="https://sritest.io" />
   <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml">
 
-  <!-- Facebook -->
-  <meta property="og:title" content="HTML SRI Tester" />
-  <meta property="og:description" content="Scan your website for Subresource Integrity (SRI) hashes" />
-  <meta property="og:image" content="https://sritest.io/img/hotlink-ok/facebook-share-image.jpg" />
-  <meta property="og:url" content="https://sritest.io" />
-  <meta property="fb:app_id" content="451706861686709" />
-
-  <!-- Twitter card -->
-  <meta name="twitter:card" content="summary" />
-  <meta name="twitter:creator" content="@gszathmari" />
-  <meta name="twitter:url" content="https://sritest.io" />
-  <meta name="twitter:title" content="HTML SRI Tester" />
-  <meta name="twitter:description" content="Scan your website for Subresource Integrity (SRI) hashes" />
-  <meta name="twitter:image" content="https://sritest.io/img/hotlink-ok/twitter-share-image.jpg" />
+  <!-- @include social.txt -->
 
   <!-- DNS prefetching -->
   <link rel="dns-prefetch" href="//api.sritest.io">
@@ -150,11 +138,7 @@
 
   </div>
 
-  <div id="footer" class="ui vertical right aligned inverted grey footer segment">
-    <div class="ui container">
-      <h4 class="ui header">Gabor Szathmari &copy; 2015</h4>
-    </div>
-  </div>
+  <!-- @include footer.txt -->
 
   <!-- @ifdef CI -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"
@@ -164,7 +148,7 @@
       crossorigin="anonymous"></script>
   <!-- @endif -->
   <script>
-    window.jQuery || document.write('<script src="/js/vendor/jquery.js"><\/script>')
+    window.jQuery || document.write('<script src="/js/vendor/jquery.min.js"><\/script>')
   </script>
   <script src="/js/vendor/semantic.min.js"></script>
   <script src="/js/ui.js" defer></script>
