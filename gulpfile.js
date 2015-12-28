@@ -219,6 +219,9 @@ gulp.task('install-bower-packages-js', function() {
           overrides: {
             "jquery": {
               "main": "**/jquery.min.js"
+            },
+            "highlightjs": {
+              "main": "**/highlight.pack.min.js"
             }
           }
         }))
@@ -226,7 +229,14 @@ gulp.task('install-bower-packages-js', function() {
 });
 
 gulp.task('install-bower-packages-css', function() {
-    return gulp.src(mainBowerFiles({filter: /\..*css$/i}))
+  return gulp.src(mainBowerFiles({
+        filter: /\..*css$/i,
+          overrides: {
+            "highlightjs": {
+              "main": "**/androidstudio.css"
+            }
+          }
+        }))
         .pipe(gulp.dest(DST+paths.cssVendorDirectory));
 });
 

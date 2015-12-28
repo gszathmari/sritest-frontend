@@ -12,6 +12,8 @@
   <link rel="stylesheet" href="/css/main.css">
   <link rel="stylesheet" href="/css/app.css">
   <link rel="stylesheet" href="/css/vendor/semantic.min.css">
+  <!-- Highlight.js -->
+  <link rel="stylesheet" href="/css/vendor/androidstudio.css">
 
   <!-- Modernizr -->
   <script src="/js/modernizr.js"></script>
@@ -84,75 +86,112 @@
       <div class="ui text container">
         <div class="ui grid">
           <div class="five wide column">
-            <a href="https://blog.gaborszathmari.me" target="_blank">
-              <img class="ui fluid rounded image" src="/img/gabor.jpg" alt="Gabor Szathmari">
-            </a>
+            <img class="ui fluid rounded image" src="/img/gabor.jpg" alt="Gabor Szathmari">
           </div>
           <div class="eleven wide column">
             <h1 class="ui header">About the Project</h1>
             <p>
-              This free service allows you to scan any website for Subresource
-              Integrity (SRI) usage.
+              This free service allows software developers to scan websites for
+              Subresource Integrity (SRI) hashes.
             </p>
 
             <p>
               JavaScript and CSS stylesheet assets can be protected with
-              cryptographic hashes to prevent them from tampering.
-            </p>
-
-            <h2 class="ui header">The Problem with CDN Assets</h2>
-            <p>
-              Website publishers tend to trust Content Delivery Networks (CDN)
-              to host some of their content. Publishers rely on third-parties,
-              such as <a href="https://developers.google.com/speed/libraries/">Google</a>,
-              <a href="https://www.jsdelivr.com">jsdelivr</a> or <a href="https://cdnjs.com">cdnjs</a>, to serve
-              content close to the website visitors.
+              cryptographic hashes to prevent tampering with these assets on
+              their way to the website visitors.
             </p>
 
             <p>
-              CDNs are great, because they serve assets from multiple datacenters
-              across the globe. Therefore, a website visitor will have a better
-              experience as the page loads quicker. In addition, the uptime of
-              third-party CDNs are <a href="https://www.cdnperf.com/">close to 100%</a>.
+              SRI hashes can protect visitors from browser exploits, denial of
+              service attacks, cookie stealing and other harmful actions.
             </p>
 
+            <h2 class="ui header">The Benefit of CDNs</h2>
+            <p>
+              Website developers tend to trust Content Delivery Networks (CDN)
+              to host some of their website assets such as JavaScript and CSS.
+              Third-party CDN services such as <a href="https://developers.google.com/speed/libraries/">Google</a>,
+              <a href="https://www.jsdelivr.com">jsdelivr</a> or <a href="https://cdnjs.com">cdnjs</a>,
+              offer to host assets close to the website visitors.
+            </p>
+
+            <p>
+              The benefit of using CDNs to visitor experience is great.
+              Providers host the assets from datacenters around the globe with
+              good network connections. As a result, webpages load quicker into
+              the visitors' browsers. Also, the uptime of a typical CDN is
+              <a href="https://www.cdnperf.com/">close to 100%</a>.
+            </p>
+
+            <h2 class="ui header">The Problem with Hosted Assets</h2>
             <p>
               However, there is a lot of trust involved here. JavaScript and
               CSS stylesheets can be abused to
               <a href="https://blogs.sophos.com/2015/07/21/a-closer-look-at-the-angler-exploit-kit/">exploit browsers</a>
-              or <a href="http://arstechnica.com/security/2015/04/ddos-attacks-that-crippled-github-linked-to-great-firewall-of-china/">DDoS websites</a>.
-            </p>
-
-            <h2 class="ui header">Verifying CDN Assets</h2>
-            <p>
-              The solution to verify the third-party assets is using cryptographic
-              hashes. These hashes, standardized by
-              <a href="http://www.w3.org/TR/SRI/">W3C</a>, function similarly to
-              the well-known md5 or sha hashes.
+              <a href="http://arstechnica.com/security/2015/04/ddos-attacks-that-crippled-github-linked-to-great-firewall-of-china/">DDoS websites</a>,
+              and steal cookies from the visitors. Software developers assume
+              these third-parties will never replace the hosted assets with something
+              malicious. Unfortunately, this is not always the case.
             </p>
 
             <p>
-              We generate SRI hashes and apppend them to out HTML assets where
-              JavaScript and CSS stylesheets are included.
+              The Great Firewall of China <a href="https://citizenlab.org/2015/04/chinas-great-cannon/" target="_blank">
+              has injected extra code</a> into JavaScript assets on Baidu's CDNs.
+              The additional snippet was instructing the browser of unsuspecting
+              website visitors to DDoS GitHub servers.
+            </p>
+
+            <p>
+              Another example is from 2014, where <a href="http://www.net-security.org/malware_news.php?id=2869">
+              jQuery's CDN was compromised</a> according to RiskIQ. Although
+              jQuery <a href="https://blog.jquery.com/2014/09/24/update-on-jquery-com-compromises/">did not confirm
+              </a>the unauthorized modification of the hosted library, the case
+              highlights the problem with blind trust in these third-parties.
+            </p>
+
+            <h2 class="ui header">Trust, but Verify</h2>
+            <p>
+              The solution to confirm the integrity of third-party assets with
+              cryptographic hash named Subresource Integrity (SRI) hash.
+
+              This hash format has been standardized by
+              <a href="http://www.w3.org/TR/SRI/">W3C</a> and function similarly to
+              the well-known MD5 or SHA hashes.
+            </p>
+
+            <p>
+              To protect third-party hosted assets is relatively straightforward.
+              First, we need to generate the SRI hash of the asset. Then we append
+              calculated SRI values to the asset tags like the following:
+
+              <pre><code class="hljs html">&lt;script src=https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js<br>integrity=&quot;sha256-ImQvICV38LovIsvla2zykaCTdEh1Z801Y+DSop91wMU=<br>sha384-8gBf6Y4YYq7Jx97PIqmTwLPin4hxIzQw5aDmUg/DDhul9fFpbbLcLh3nTIIDJKhx<br>sha512-AFwxAkWdvxRd9qhYYp1qbeRZj6/iTNmJ2GFwcxsMOzwwTaRwz2a/2TX225Ebcj3whXte1WGQb38cXE5j7ZQw3g==&quot;<br>crossorigin=anonymous&gt;&lt;/script&gt;</code></pre>
             </p>
 
             <p>
               When the website visitor's browser downloads the remote asset from
-              the CDN, the browser will verify the cryptographic hash. If the
-              CDN-served content is modified at the provider, or along the way
-              to the website visitor, the browser will not execute the
-              downloaded JavaScript or CSS stylesheet.
+              the CDN, the browser will verify the hash listed in the tags.
             </p>
 
-            <h2 class="ui header">Grading Websites for SRI</h2>
             <p>
-              So SRI is a great idea to improve website security and website
-              publishers all should consider adding the hashes as necessary.
+              If someone has tampered with the asset either at the CDN provider or
+              along the way on the network, the browser will not execute the
+              JavaScript or CSS stylesheet.
+            </p>
+
+            <h2 class="ui header">Summary</h2>
+            <p>
+              SRI is a great addition to website security. Malicious JavaScript
+              and CSS code can be dangerous to website visitors.
+              SRI hashes adds an additional layer of protection
+              to the integrity of these assets, especially when they are hosted
+              at CDNs.
             </p>
 
             <p>
               The reason <a href="https://sritest.io">sritest.io</a> was born
-              is to foster the broad implementation of this protection.
+              is to foster the implementation of SRI. I encourage
+              every website developer to consider adding SRI hashes to each
+              supported asset.
             </p>
 
             <h1 class="ui header">About Me</h1>
@@ -163,8 +202,8 @@
             <p>
               I have experience with architectural design, policy- and risk
               management, and incident management. I have also been dealing with
-              application security, vulnerability management and event log
-              management. I love to develop software in my free time.
+              application security, vulnerability management, and event log
+              management for a long time. I love to develop software in my free time.
             </p>
 
             <p>
@@ -194,6 +233,9 @@
   <script src="/js/vendor/semantic.min.js"></script>
   <script src="/js/ui.js" defer></script>
   <script src="/js/main.js" defer></script>
+  <!-- Highlight.js -->
+  <script src="/js/vendor/highlight.pack.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
 
   <!-- @ifdef CI -->
     <!-- Google Analytics Code -->
