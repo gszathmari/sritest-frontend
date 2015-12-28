@@ -26,13 +26,6 @@ HandleBars.registerHelper "formatDate", (epoch) ->
   day = moment.unix(epoch)
   return day.calendar()
 
-HandleBars.registerHelper "truncate", (string) ->
-  maxlen = 32
-  if string.length > maxlen
-    return string[0..maxlen] + "..."
-  else
-    return string
-
 HandleBars.registerHelper "truncateSummary", (string) ->
   maxlen = 70
   if string.length > maxlen
