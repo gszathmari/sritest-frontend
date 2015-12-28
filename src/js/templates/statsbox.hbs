@@ -13,7 +13,7 @@
           <tbody>
             {{#each recent}}
             <tr>
-              <td><a href="{{url}}" target="_blank" ref="nofollow">{{url}}</a></td>
+              <td title="{{url}}"><a href="{{url}}" target="_blank" ref="nofollow">{{url}}</a></td>
               <td class="stats {{color}} collapsing">{{stats.unsafe}} / {{stats.count}}</td>
             </tr>
             {{/each}}
@@ -35,7 +35,7 @@
           <tbody>
             {{#each best}}
             <tr>
-              <td><a href="{{url}}" target="_blank" ref="nofollow">{{url}}</a></td>
+              <td title="{{url}}"><a href="{{url}}" target="_blank" ref="nofollow">{{url}}</a></td>
               <td class="stats {{color}}">{{mark}}</td>
             </tr>
             {{/each}}
@@ -57,7 +57,7 @@
           <tbody>
             {{#each worst}}
             <tr>
-              <td><a href="{{url}} target="_blank" ref="nofollow"">{{url}}</a></td>
+              <td title="{{url}}"><a href="{{url}} target="_blank" ref="nofollow"">{{url}}</a></td>
               <td class="stats {{color}}">{{mark}}</td>
             </tr>
             {{/each}}
