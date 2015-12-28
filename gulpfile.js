@@ -32,6 +32,7 @@ var gzip = require('gulp-gzip');
 var git = require('git-rev');
 var fs = require('fs');
 var rimraf = require('gulp-rimraf');
+var replace = require('gulp-replace');
 
 const siteUrl = 'https://sritest.io';
 
@@ -347,6 +348,7 @@ gulp.task('sitemap', function () {
         .pipe(sitemap({
             siteUrl: siteUrl
         }))
+        .pipe(replace('.html', ''))
         .pipe(gulp.dest(DST));
 });
 
