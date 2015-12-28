@@ -22,11 +22,47 @@
 }
 
 // Grade box
-.ui.centered.inverted.card {
-  .ui.header {
-    font-size: 4em;
+@media only screen and (min-width: 320px) {
+  .ui.centered.inverted.card {
+    .ui.header {
+      font-size: 0.85em;
+    }
+    .extra {
+      font-size: 0.6em;
+    }
   }
 }
+@media only screen and (min-width: 768px) {
+  .ui.centered.inverted.card {
+    .ui.header {
+      font-size: 2.5em;
+    }
+    .extra {
+      font-size: 0.9em;
+    }
+  }
+}
+@media only screen and (min-width: 992px) {
+  .ui.centered.inverted.card {
+    .ui.header {
+      font-size: 3.6em;
+    }
+    .extra {
+      font-size: 1.1em;
+    }
+  }
+}
+@media only screen and (min-width: 1200px) {
+  .ui.centered.inverted.card {
+    .ui.header {
+      font-size: 4.3em;
+    }
+    .extra {
+      font-size: 1.2em;
+    }
+  }
+}
+
 .header.item {
   .ui.header {
     a {
