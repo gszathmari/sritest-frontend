@@ -1,5 +1,4 @@
 request = require 'request'
-$ = require 'jquery-browserify'
 validator = require 'validator'
 
 config = require './lib/config.coffee'

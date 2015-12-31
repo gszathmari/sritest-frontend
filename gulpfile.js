@@ -447,7 +447,7 @@ gulp.task('build', function(callback) {
 /*
  * Build project for developing
  */
-gulp.task('default', function(callback) {
+gulp.task('develop', function(callback) {
   runSequence('clean',
               ['copy-tiles', 'copy-favicon'],
               ['coffee-lint'],
@@ -456,6 +456,7 @@ gulp.task('default', function(callback) {
               ['install-bower-packages-js', 'install-bower-packages-css'],
               'generate-modernizr',
               'inject-code-snippets',
+              'minimize-images',
               callback
   )
 });

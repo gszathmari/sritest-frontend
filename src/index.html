@@ -47,7 +47,7 @@
     // End Rollbar Snippet
     </script>
 
-    <!-- Segment.io -->
+    <!-- Segment.io tracking I. -->
     <!-- @include segmentio.txt -->
   <!-- @endif -->
 </head>
@@ -162,9 +162,12 @@
     window.jQuery || document.write('<script src="/js/vendor/jquery.min.js"><\/script>')
   </script>
   <script src="/js/vendor/semantic.min.js"></script>
-  <script src="/js/ui.js" defer></script>
+  <script src="/js/ui.js" async></script>
   <script src="/js/main.js" defer></script>
+  <!-- @ifdef CI -->
+  <!-- Segment.io tracking II. -->
   <script src="/js/track.js" defer></script>
+  <!-- @endif -->
 
   <!-- @ifdef CI -->
     <!-- Google Analytics Code -->
