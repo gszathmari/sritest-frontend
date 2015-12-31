@@ -1,4 +1,3 @@
-<!-- Footer -->
 <div id="footer" class="ui vertical right aligned inverted grey footer segment">
   <div class="ui container">
     <h4 class="ui header">

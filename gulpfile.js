@@ -6,7 +6,7 @@ var preprocess = require('gulp-preprocess');
 var clean = require('gulp-clean');
 var $ = require('gulp-load-plugins')();
 var robots = require('gulp-robots');
-var minifyHTML = require('gulp-minify-html');
+var minifyHTML = require('gulp-htmlmin');
 var jshintStylish = require('jshint-stylish');
 var less = require('gulp-less');
 var coffeelint = require('gulp-coffeelint');
@@ -153,12 +153,19 @@ gulp.task('robots', function () {
  * Process HTML files
  */
 gulp.task('html-dist', function() {
+  return gulp.src(SRC+paths.htmlFiles)
+      .pipe(gulp.dest(DST));
+});
+
+/*
+ * Add code snippets into HTML files from templates
+ */
+gulp.task('inject-code-snippets', function () {
   var options = {
     includeBase: SRC + 'templates/'
   };
-  return gulp.src(SRC+paths.htmlFiles)
+  return gulp.src(DST+paths.htmlFiles)
       .pipe(preprocess(options))
-      .pipe($.stripComments())
       .pipe(gulp.dest(DST));
 });
 
@@ -168,10 +175,10 @@ gulp.task('html-dist', function() {
 // We keep this separate from 'html-dist', otherwise 'generate-sri' won't work
 gulp.task('minify-html', function () {
   var opts = {
-      conditionals: true,
-      spare:true
+      collapseWhitespace: true
   };
   return gulp.src(DST+paths.htmlFiles)
+      .pipe($.removeHtmlComments())
       .pipe(minifyHTML(opts))
       .pipe(gulp.dest(DST));
 });
@@ -419,11 +426,9 @@ gulp.task('watch', function () {
 gulp.task('build', function(callback) {
   runSequence('clean',
               'robots',
-              'copy-tiles',
-              'copy-favicon',
+              ['copy-tiles', 'copy-favicon'],
               ['coffee-lint'],
-              ['css-dist', 'browserify-dist', 'coffee-dist', 'html-dist'],
-              'less-dist',
+              ['css-dist', 'browserify-dist', 'coffee-dist', 'html-dist', 'less-dist'],
               ['copy-vendor-js', 'copy-vendor-css', 'copy-semantic-ui-icons'],
               ['install-bower-packages-js', 'install-bower-packages-css'],
               'generate-modernizr',
@@ -431,6 +436,7 @@ gulp.task('build', function(callback) {
               'sitemap',
               'revreplace',
               'generate-sri',
+              'inject-code-snippets',
               'minify-html',
               'gzip',
               'git-longhash',
@@ -443,15 +449,13 @@ gulp.task('build', function(callback) {
  */
 gulp.task('default', function(callback) {
   runSequence('clean',
-              'copy-tiles',
-              'copy-favicon',
+              ['copy-tiles', 'copy-favicon'],
               ['coffee-lint'],
-              ['css-dist', 'browserify-dist', 'coffee-dist', 'html-dist'],
-              'less-dist',
+              ['css-dist', 'browserify-dist', 'coffee-dist', 'html-dist', 'less-dist'],
               ['copy-vendor-js', 'copy-vendor-css', 'copy-semantic-ui-icons'],
               ['install-bower-packages-js', 'install-bower-packages-css'],
               'generate-modernizr',
-              'minimize-images',
+              'inject-code-snippets',
               callback
   )
 });
