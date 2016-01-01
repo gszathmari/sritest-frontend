@@ -63,7 +63,7 @@ const paths = {
       textFiles: '*.txt',
       htmlFiles: '*.html',
       tiles: '*.png',
-      favicon: 'favicon.ico',
+      faviconDir: 'favicon/'
 };
 
 const SRC = './src/';
@@ -134,7 +134,7 @@ gulp.task('copy-tiles', function() {
  * Copy favicon.ico
  */
 gulp.task('copy-favicon', function() {
-    return gulp.src(SRC+paths.favicon)
+    return gulp.src(SRC + paths.faviconDir + '*')
         .pipe(gulp.dest(DST));
 });
 
