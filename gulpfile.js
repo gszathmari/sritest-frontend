@@ -31,9 +31,11 @@ var revReplace = require("gulp-rev-replace");
 var gzip = require('gulp-gzip');
 var git = require('git-rev');
 var fs = require('fs');
-var rimraf = require('gulp-rimraf');
 var replace = require('gulp-replace');
 var srizer = require('gulp-srizer');
+var through = require('through2');
+var log = gutil.log;
+var colors = gutil.colors;
 
 const siteUrl = 'https://sritest.io';
 
@@ -97,6 +99,24 @@ gulp.task('gzip', function() {
         .pipe(gulp.dest(DST));
 });
 
+/*
+ * Remove original files after versioning
+ */
+var rmOrig = function() {
+  return through.obj(function(file, enc, cb) {
+
+    if (file.revOrigPath) {
+      log(colors.red('DELETING'), file.revOrigPath);
+      fs.unlink(file.revOrigPath, function(err) {
+        // TODO: emit an error if err
+      });
+    }
+
+    this.push(file); // Pass file when you're done
+    return cb() // notify through2 you're done
+  });
+};
+
 gulp.task('revision', function() {
     var assets = [
       DST + '**/*.js',
@@ -104,9 +124,9 @@ gulp.task('revision', function() {
       DST + paths.imageFiles
     ];
     return gulp.src(assets, {base: DST})
-        .pipe(rimraf())
         .pipe(rev())
         .pipe(gulp.dest(DST))
+        .pipe(rmOrig())
         .pipe(rev.manifest({
           base: DST,
           merge: true,
@@ -123,15 +143,7 @@ gulp.task('revreplace', ['revision'], function(){
 });
 
 /*
- * Copy tiles
- */
-gulp.task('copy-tiles', function() {
-    return gulp.src(SRC+paths.tiles)
-        .pipe(gulp.dest(DST));
-});
-
-/*
- * Copy favicon.ico
+ * Copy favicons
  */
 gulp.task('copy-favicon', function() {
     return gulp.src(SRC + paths.faviconDir + '*')
@@ -426,17 +438,16 @@ gulp.task('watch', function () {
 gulp.task('build', function(callback) {
   runSequence('clean',
               'robots',
-              ['copy-tiles', 'copy-favicon'],
-              ['coffee-lint'],
+              ['minimize-images', 'copy-favicon'],
+              'coffee-lint',
               ['css-dist', 'browserify-dist', 'coffee-dist', 'html-dist', 'less-dist'],
               ['copy-vendor-js', 'copy-vendor-css', 'copy-semantic-ui-icons'],
               ['install-bower-packages-js', 'install-bower-packages-css'],
               'generate-modernizr',
-              'minimize-images',
               'sitemap',
+              'inject-code-snippets',
               'revreplace',
               'generate-sri',
-              'inject-code-snippets',
               'minify-html',
               'gzip',
               'git-longhash',
@@ -449,14 +460,13 @@ gulp.task('build', function(callback) {
  */
 gulp.task('develop', function(callback) {
   runSequence('clean',
-              ['copy-tiles', 'copy-favicon'],
-              ['coffee-lint'],
+              ['minimize-images', 'copy-favicon'],
+              'coffee-lint',
               ['css-dist', 'browserify-dist', 'coffee-dist', 'html-dist', 'less-dist'],
               ['copy-vendor-js', 'copy-vendor-css', 'copy-semantic-ui-icons'],
               ['install-bower-packages-js', 'install-bower-packages-css'],
               'generate-modernizr',
               'inject-code-snippets',
-              'minimize-images',
               callback
   )
 });
