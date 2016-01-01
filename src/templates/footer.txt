@@ -2,10 +2,8 @@
   <div class="ui container">
     <h4 class="ui header">
       Gabor Szathmari
-      <a href="https://twitter.com/gszathmari" target="_blank"><i class="twitter square icon"></i></a>
-      <a href="https://blog.gaborszathmari.me" target="_blank"><i class="wordpress icon"></i></a>
-      <a href="https://www.linkedin.com/in/gaborszathmari" target="_blank"><i class="linkedin square icon"></i></a>
-      <a href="https://github.com/gszathmari" target="_blank"><i class="github icon"></i></a>
+      <a href="https://twitter.com/sritestio" target="_blank"><i class="twitter square icon"></i></a>
+      <a href="https://www.facebook.com/sritestio" target="_blank"><i class="facebook square icon"></i></a>
       2016
     </h4>
   </div>
