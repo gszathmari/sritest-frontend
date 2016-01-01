@@ -8,6 +8,10 @@ node_js:
 services:
   - docker
 
+cache:
+  directories:
+    - node_modules
+
 before_script:
   - npm install -g coffee-script gulp bower
   - bower install
