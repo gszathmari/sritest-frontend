@@ -4,7 +4,6 @@
 <meta property="og:image" content="https://sritest.io/img/hotlink-ok/facebook-share-image.jpg" />
 <meta property="og:url" content="https://sritest.io" />
 <meta property="fb:app_id" content="451706861686709" />
-<meta property="fb:page_id" content="530846250430641" />
 <meta property="fb:admins" content="1709683867" />
 
 <!-- Twitter card -->
