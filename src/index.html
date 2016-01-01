@@ -51,6 +51,7 @@
   <!-- Add your site or application content here -->
   <div class="ui middle aligned center aligned grid">
 
+    <!-- Menu for large screens -->
     <div class="ui top fixed large borderless menu">
       <div class="header item">
         <h2 class="ui header"><a href="https://sritest.io"><img class="ui middle aligned mini spaced image" src="/img/srilogo.png" alt="sritest.io Logo">sritest.io<sup>beta</sup></a></h2>
@@ -72,6 +73,28 @@
       </div>
     </div>
 
+    <!-- Menu for small screens -->
+    <div class="ui top fixed small borderless menu">
+      <div class="header item">
+        <h2 class="ui header"><a href="https://sritest.io"><img class="ui middle aligned mini spaced image" src="/img/srilogo.png" alt="sritest.io Logo">sritest.io<sup>beta</sup></a></h2>
+      </div>
+
+      <div class="right menu">
+        <div class="ui dropdown icon item">
+            <i class="content icon"></i>
+            <div class="menu">
+              <a class="item" href="https://sritest.io/about">About</a>
+              <div class="divider"></div>
+              <div class="header">
+                More Tests
+              </div>
+              <a class="item" href="https://www.ssllabs.com/ssltest/" target="_blank">SSL Server Test</a>
+              <a class="item" href="https://securityheaders.io/" target="_blank">Security Headers</a>
+            </div>
+        </div>
+      </div>
+    </div>
+
     <div class="twelve wide column">
 
       <!-- URL input box -->
@@ -79,7 +102,7 @@
         <div class="ui attached blue inverted very padded segment">
           <h1 class="ui header">Scan for Subresource Integrity (SRI)</h1>
           <div class="ui centered grid">
-            <div class="ten wide column">
+            <div class="twelve wide column">
               <form class="ui form" id="submit-task-form" method="post">
                 <div class="inline fields">
                   <div id="remote-url-field" class="sixteen wide field">
