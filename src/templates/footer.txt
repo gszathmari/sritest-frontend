@@ -4,6 +4,7 @@
       Gabor Szathmari
       <a href="https://twitter.com/sritestio" target="_blank"><i class="twitter square icon"></i></a>
       <a href="https://www.facebook.com/sritestio" target="_blank"><i class="facebook square icon"></i></a>
+      <a href="mailto:hello@sritest.io"><i class="mail square icon"></i></a>
       2016
     </h4>
   </div>
