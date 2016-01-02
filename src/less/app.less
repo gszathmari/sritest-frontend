@@ -1,3 +1,4 @@
+// Defining colour variables
 @black: rgba(0, 0, 0, .91);
 @white: rgba(255, 255, 255, .91);
 @olive: #B5CC18;
@@ -6,48 +7,75 @@
 @orange: #F2711C;
 @red: #DB2828;
 @blue: #2185D0;
+@opaque: rgba(255, 255, 255, .95);
 
-#url-input-box {
-  margin-top: 7em;
-  margin-bottom: 1.2em;
-}
-
-#contents {
-  margin-top: 8.5em;
-  margin-bottom: 5.5em;
-}
-
-#results-box, #summary-box {
-  margin-bottom: 4em;
-}
-
-// Mobile displays
-@media only screen and (min-width: 320px) {
-  // Grade box
-  #mark-box {
-    .ui.centered.inverted.card {
-      display: none;
-    }
-  }
-  // Select mobile / desktop top menu
-  .small.borderless.menu {
+// Small device mixin
+.small-device-only {
+  @media only screen and (min-width: 320px) {
     display: inherit;
   }
-  .large.borderless.menu {
+  @media only screen and (min-width: 768px) {
     display: none;
   }
-  // Message under URL input box
-  .bottom.attached.info.message {
+  @media only screen and (min-width: 992px) {
+    display: none;
+  }
+  @media only screen and (min-width: 1200px) {
     display: none;
   }
 }
 
-// Tablets
-@media only screen and (min-width: 768px) {
-  // Grade box
-  #mark-box {
-    .ui.centered.inverted.card {
-      display: inherit;
+// Large (tablet, computer) device mixin
+.large-device-only {
+  @media only screen and (min-width: 320px) {
+    display: none;
+  }
+  @media only screen and (min-width: 768px) {
+    display: inherit;
+  }
+  @media only screen and (min-width: 992px) {
+    display: inherit;
+  }
+  @media only screen and (min-width: 1200px) {
+    display: inherit;
+  }
+}
+
+// Mobile-only top menu
+.small.borderless.menu {
+  .small-device-only();
+  background: @opaque !important;
+}
+
+// Large device top menu
+.large.borderless.menu {
+  .large-device-only();
+  background: @opaque !important;
+}
+
+// Show info bar under URL input box only on large devices
+.bottom.attached.info.message {
+  .large-device-only();
+  // Text size should be smaller on tablets
+  @media only screen and (min-width: 768px) {
+    font-size: 0.8em;
+  }
+  @media only screen and (min-width: 992px) {
+    font-size: 1em;
+  }
+}
+
+// Grade box in results summary
+#mark-box {
+  // Show grade on mobiles
+  .ui.statistics {
+    .small-device-only();
+  }
+  // Show grade on large devices
+  .ui.centered.inverted.card {
+    .large-device-only();
+    // Vary font size based on screen sizes
+    @media only screen and (min-width: 768px) {
       .ui.header {
         font-size: 2.5em;
       }
@@ -55,26 +83,7 @@
         font-size: 0.9em;
       }
     }
-    .ui.statistics {
-      display: none;
-    }
-  }
-  // Select mobile / desktop top menu
-  .small.borderless.menu {
-    display: none;
-  }
-  .large.borderless.menu {
-    display: inherit;
-  }
-  // Message under URL input box
-  .bottom.attached.info.message {
-    display: inherit;
-  }
-}
-
-@media only screen and (min-width: 992px) {
-  #mark-box {
-    .ui.centered.inverted.card {
+    @media only screen and (min-width: 992px) {
       .ui.header {
         font-size: 3.6em;
       }
@@ -82,12 +91,7 @@
         font-size: 1.1em;
       }
     }
-  }
-}
-
-@media only screen and (min-width: 1200px) {
-  #mark-box {
-    .ui.centered.inverted.card {
+    @media only screen and (min-width: 1200px) {
       .ui.header {
         font-size: 4.3em;
       }
@@ -96,66 +100,62 @@
       }
     }
   }
-}
-
-.header.item {
-  .ui.header {
-    a {
-      color: @black;
+  // Color of grade box based on the results (large devices)
+  .ui.card {
+    .content.green {
+      background-color: @green;
+      &:hover {
+        background-color: saturate(@green, 10%);
+      }
+    }
+    .content.olive {
+      background-color: @olive;
+      &:hover {
+        background-color: saturate(@olive, 10%);
+      }
+    }
+    .content.yellow {
+      background-color: @yellow;
+      &:hover {
+        background-color: saturate(@yellow, 10%);
+      }
+    }
+    .content.orange {
+      background-color: @orange;
+      &:hover {
+        background-color: saturate(@orange, 10%);
+      }
+    }
+    .content.red {
+      background-color: @red;
+      &:hover {
+        background-color: saturate(@red, 10%);
+      }
+    }
+    .content.blue {
+      background-color: @blue;
+      &:hover {
+        background-color: saturate(@blue, 10%);
+      }
+    }
+    .content {
+      .ui.header {
+        color: @white;
+      }
     }
   }
-}
-.ui.card {
-  .content.green {
-    background-color: @green;
-    &:hover {
-      background-color: saturate(@green, 10%);
-    }
-  }
-  .content.olive {
-    background-color: @olive;
-    &:hover {
-      background-color: saturate(@olive, 10%);
-    }
-  }
-  .content.yellow {
-    background-color: @yellow;
-    &:hover {
-      background-color: saturate(@yellow, 10%);
-    }
-  }
-  .content.orange {
-    background-color: @orange;
-    &:hover {
-      background-color: saturate(@orange, 10%);
-    }
-  }
-  .content.red {
-    background-color: @red;
-    &:hover {
-      background-color: saturate(@red, 10%);
-    }
-  }
-  .content.blue {
-    background-color: @blue;
-    &:hover {
-      background-color: saturate(@blue, 10%);
-    }
-  }
+  // Disable text selection in grade box
   .content {
     .ui.header {
-      color: @white;
+      user-select: none;
+      &:hover {
+        cursor: default;
+      }
     }
   }
 }
-.noselect {
-  user-select: none;
-  &:hover {
-    cursor: default;
-  }
-}
 
-// Stats box colors
+// Color of grades based on the result
 .stats.green {
   color: @green;
 }
@@ -175,6 +175,66 @@
   color: @blue;
 }
 
+// URL input blue box
+#url-input-box {
+  margin-top: 7em;
+  margin-bottom: 1.2em;
+  // Main header text "Scan for Subresource Integrity (SRI)"
+  h1 {
+    @media only screen and (min-width: 320px) {
+      font-size: 1.2rem;
+    }
+    @media only screen and (min-width: 768px) {
+      font-size: 1.7rem;
+    }
+    @media only screen and (min-width: 992px) {
+      font-size: 1.9rem;
+    }
+    @media only screen and (min-width: 1200px) {
+      font-size: 2.2rem;
+    }
+  }
+  .padded.segment {
+    @media only screen and (min-width: 320px) {
+      padding: 18px;
+    }
+    @media only screen and (min-width: 768px) {
+      padding: 30px;
+    }
+    @media only screen and (min-width: 992px) {
+      padding: 38px;
+    }
+    @media only screen and (min-width: 1200px) {
+      padding: 42px;
+    }
+  }
+}
+
+// Main content
+#contents {
+  margin-top: 8.5em;
+  margin-bottom: 5.5em;
+}
+
+// Report boxes
+#results-box, #summary-box {
+  margin-bottom: 4em;
+}
+
+// sritest.io logo text
+.top.menu {
+  .ui.header {
+    a {
+      color: @black;
+    }
+    // Beta tag in header
+    sup {
+      color: @red;
+    }
+  }
+}
+
+// URL input form
 form {
   margin-bottom: 1em;
   .ui.checkbox label {
@@ -182,13 +242,17 @@ form {
   }
 }
 
+// Footer
 #footer {
+  // Stick footer to the bottom
   width: 100%;
   position: fixed;
   bottom: 0;
+  // Text in the footer
   h4 {
     color: @white;
   }
+  // Links in the footer
   a .icon {
     color: @white;
     margin-right: 2px;
@@ -197,8 +261,10 @@ form {
 }
 
 // Align grades in stats box to center
-.ui.table td.stats {
-  text-align: center;
+#stats-box {
+  .ui.table td.stats {
+    text-align: center;
+  }
 }
 
 // Break long line in tables of detailed results box
@@ -210,20 +276,9 @@ form {
   }
 }
 
-// beta tag in header
-.header.item {
-  sup {
-    color: @red;
-  }
-}
-
+// Code snippet font size
 pre {
   code.hljs.html {
     font-size: 0.81em;
   }
-}
-
-// Translucent top menu
-.top.fixed.menu {
-  background: rgba(255, 255, 255, .95) !important;
 }
