@@ -36,6 +36,7 @@ var srizer = require('gulp-srizer');
 var through = require('through2');
 var log = gutil.log;
 var colors = gutil.colors;
+var nano = require('gulp-cssnano');
 
 const siteUrl = 'https://sritest.io';
 
@@ -269,8 +270,7 @@ gulp.task('less-dist', function () {
             browsers: ['last 2 versions'],
             cascade: false
         }))
-        .pipe($.stripComments())
-        .pipe($.minifyCss({compatibility: 'ie8'}))
+        .pipe(nano())
         .pipe(gulp.dest(DST+paths.cssDirectory))
         .pipe(browserSync.stream());
 });
@@ -312,9 +312,8 @@ gulp.task('css-dist', function () {
             browsers: ['last 2 versions'],
             cascade: false
         }))
-        .pipe($.stripComments())
         .pipe($.concat('main.css'), {newLine: ''})
-        .pipe($.minifyCss({compatibility: 'ie8'}))
+        .pipe(nano())
         .pipe(gulp.dest(DST+paths.cssDirectory))
 });
 
