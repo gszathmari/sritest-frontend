@@ -2,11 +2,12 @@ request = require 'request'
 validator = require 'validator'
 
 config = require './lib/config.coffee'
-Report = require './lib/report.coffee'
-Stats = require './lib/stats.coffee'
 templates = require './lib/templates.coffee'
 messageBox = require './lib/messagebox.coffee'
 normalizeURL = require './lib/normalizeurl.coffee'
+pullOldReport = require './lib/pulloldreport.coffee'
+pullNewReport = require './lib/pullnewreport.coffee'
+displayStats = require './lib/displaystats.coffee'
 
 # Target URL submitter form
 form = $("#submit-task-form")
@@ -15,44 +16,27 @@ reportID = window.location.hash.substring(1)
 
 # If hash is submitted in URL bar, the user came back with a report
 if validator.isUUID reportID, 4
-  # Show results box with loaders
+  # Show results box with loaders while retrieving data
   $("#results-box").show()
   $("#results-box-summary").html(templates.loader)
   $("#results-box-detailed").html(templates.loader)
-  report = new Report reportID
-  report.retrieve 3, (err, report) ->
-    # If cannot retrieve report
-    if err
-      $("#results-box").hide()
-      message = "We could not retrieve your report. Please allow your scan
-          to finish or submit the URL again."
-      errorMessage = messageBox message, "Report not found"
-      $("#message-box").html(errorMessage).children("div").slideDown().click ->
-        $(this).closest(".message").slideUp()
-        inputField.removeClass("error")
-    # Report is found, generate output and display
-    else
-      # Display summary of report
-      resultsSummary = templates.resultsSummary report.summary()
-      $("#results-box-summary").html(resultsSummary)
-      # Display detailed results
-      resultsDetailed = templates.resultsDetailed report.detailed()
-      $("#results-box-detailed").html(resultsDetailed)
-      # Change page title
-      document.title = "SRI Report on #{report.URL()}"
+  # Get report from API
+  pullOldReport(reportID)
 else
-  # Get stats
-  stats = new Stats
-  stats.retrieve 3, (err, stats) ->
-    statsBox = templates.statsBox stats.get()
-    $("#stats-box").html(statsBox).fadeIn()
+  # Display report stats if website is visited without report ID in URL
+  displayStats()
 
+# Handle URLs submited in the URL input box
 form.find(":button").click (e) ->
   # Prevent navigating from page
   e.preventDefault()
+  # Save button to add and remove 'loader' to it
   button = $(this)
+  # This is where URL is entered by the user
   inputField = $("#remote-url-field")
+  # Get URL from the input text field
   targetURL = form.find("#remote-url").val()
+  # Get value of 'hide results from stats' checkbox
   hideResults = form.find("#hide-results").is(":checked")
   # Validate user submitted URL on the client side
   unless validator.isURL targetURL, config.options.validator
@@ -100,29 +84,8 @@ form.find(":button").click (e) ->
         reportID = info.id
         # Set URL hash with report ID
         window.location.hash = reportID
-        report = new Report reportID
-        report.retrieve 8, (err, report) ->
-          # If cannot retrieve report from API
-          if err
-            message = "We could not scan the remote website. Please check your URL
-              and try again."
-            errorMessage = messageBox message
-            $("#results-box").hide()
-            $("#message-box").html(errorMessage).children("div").slideDown().click ->
-              $(this).closest(".message").slideUp()
-              inputField.removeClass("error")
-          # Report is found, generate output and display
-          else
-            # Generate summary of report
-            resultsSummary = templates.resultsSummary report.summary()
-            $("#results-box-summary").html(resultsSummary)
-            # Generate detailed report
-            resultsDetailed = templates.resultsDetailed report.detailed()
-            $("#results-box-detailed").html(resultsDetailed)
-            # Change page title
-            document.title = "SRI Report on #{report.URL()}"
-            # Scroll down to results
-            $("body").animate({scrollTop: $("#results-box").offset().top - 100 }, 'slow')
+        # Pull and display report with ID
+        pullNewReport(reportID)
       # Error when submitting task to remote API
       else
         message = "Oh noes :( Our service is down. Please hold on and submit
