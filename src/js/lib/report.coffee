@@ -36,15 +36,7 @@ class Report
 
   parseTags: (report) ->
     tags = JSON.parse report.tags
-    # Filter duplicate tags out
-    data =
-      scripts:
-        safe: _.uniq tags.scripts.safe
-        unsafe: _.uniq tags.scripts.unsafe
-      stylesheets:
-        safe: _.uniq tags.stylesheets.safe
-        unsafe: _.uniq tags.stylesheets.unsafe
-    return data
+    return tags
 
   get: ->
     return @report
@@ -64,6 +56,12 @@ class Report
   safeStylesheets: ->
     return @tags.stylesheets.safe
 
+  sameOriginScripts: ->
+    return @tags.scripts.sameorigin
+
+  sameOriginStylesheets: ->
+    return @tags.stylesheets.sameorigin
+
   unsafeScripts: ->
     return @tags.scripts.unsafe
 
@@ -71,10 +69,14 @@ class Report
     return @tags.stylesheets.unsafe
 
   scripts: ->
-    return _.union @tags.scripts.safe, @tags.scripts.unsafe
+    return _.union @tags.scripts.safe,
+      @tags.scripts.unsafe,
+      @tags.scripts.sameorigin
 
   stylesheets: ->
-    return _.union @tags.stylesheets.safe, @tags.stylesheets.unsafe
+    return _.union @tags.stylesheets.safe,
+      @tags.stylesheets.unsafe,
+      @tags.stylesheets.sameorigin
 
   safeTags: ->
     return _.union @tags.scripts.safe,
@@ -87,8 +89,10 @@ class Report
   getAllTags: ->
     return _.union @tags.scripts.safe,
       @tags.scripts.unsafe,
+      @tags.scripts.sameorigin,
       @tags.stylesheets.safe,
-      @tags.stylesheets.unsafe
+      @tags.stylesheets.unsafe,
+      @tags.stylesheets.sameorigin
 
   summary: ->
     data =
@@ -133,11 +137,15 @@ class Report
       scripts:
         unsafe: @unsafeScripts()
         safe: @safeScripts()
-        tags: _.union @unsafeScripts(), @safeScripts()
+        sameorigin: @sameOriginScripts()
       stylesheets:
         unsafe: @unsafeStylesheets()
         safe: @safeStylesheets()
-        tags: _.union @unsafeStylesheets(), @safeStylesheets()
+        sameorigin: @sameOriginStylesheets()
+    data.scripts.tags = _.union data.scripts.unsafe,
+      data.scripts.safe, data.scripts.sameorigin
+    data.stylesheets.tags = _.union data.stylesheets.unsafe,
+      data.stylesheets.safe, data.stylesheets.sameorigin
     return data
 
 module.exports = Report

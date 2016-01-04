@@ -26,6 +26,17 @@
             </td>
           </tr>
         {{/each}}
+        {{#each scripts.sameorigin}}
+          <tr>
+            <td>
+              {{this}}
+            </td>
+            <td class="collapsing">
+              <i class="icon checkmark"></i>
+              Same origin
+            </td>
+          </tr>
+        {{/each}}
       {{else}}
         <tr>
           <td colspan="2">
@@ -60,6 +71,17 @@
             <td class="collapsing">
               <i class="icon checkmark"></i>
               SRI hash detected
+            </td>
+          </tr>
+        {{/each}}
+        {{#each stylesheets.sameorigin}}
+          <tr>
+            <td>
+              {{this}}
+            </td>
+            <td class="collapsing">
+              <i class="icon checkmark"></i>
+              Same origin
             </td>
           </tr>
         {{/each}}
