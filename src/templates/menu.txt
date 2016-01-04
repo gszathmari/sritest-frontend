@@ -12,8 +12,14 @@
     <div class="ui dropdown item">
         More Tests <i class="dropdown icon"></i>
         <div class="menu">
-          <a class="item" href="https://www.ssllabs.com/ssltest/" target="_blank">SSL Server Test</a>
-          <a class="item" href="https://securityheaders.io/" target="_blank">Security Headers</a>
+          <a class="item" href="https://www.ssllabs.com/ssltest/" target="_blank">
+            SSL Server Test
+            <i class="external icon"></i>
+          </a>
+          <a class="item" href="https://securityheaders.io/" target="_blank">
+            Security Headers
+            <i class="external icon"></i>
+          </a>
         </div>
     </div>
     <a class="item menu-about" href="https://sritest.io/about">About</a>
