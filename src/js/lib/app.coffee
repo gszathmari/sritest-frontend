@@ -21,6 +21,15 @@ exports.ui = ->
   if document.URL.indexOf('about') > -1
     $('.menu-about').addClass('active')
 
+  # Handle 'back' and 'forward' buttons
+  window.onhashchange = ->
+    # User navigated to main page
+    if window.location.hash.substring(1) is ""
+      # Hide report in case displayed
+      $("#results-box").hide()
+      # Display stats box
+      $("#stats-box").show()
+
 exports.run = ->
   # Target URL submitter form
   form = $("#submit-task-form")
