@@ -7,6 +7,7 @@
 @orange: #F2711C;
 @red: #DB2828;
 @blue: #2185D0;
+@grey: #767676;
 @opaque: rgba(255, 255, 255, .95);
 
 // Small device mixin
@@ -102,6 +103,12 @@
   }
   // Color of grade box based on the results (large devices)
   .ui.card {
+    .content.grey {
+      background-color: @grey;
+      &:hover {
+        background-color: saturate(@grey, 10%);
+      }
+    }
     .content.green {
       background-color: @green;
       &:hover {
@@ -156,6 +163,9 @@
 }
 
 // Color of grades based on the result
+.stats.grey {
+  color: @grey;
+}
 .stats.green {
   color: @green;
 }

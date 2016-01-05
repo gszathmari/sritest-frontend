@@ -57,7 +57,10 @@ class Stats
         when isNaN(result.score) is true then "blue"
         else "red"
       return result
-    return results
+    # Remove 'NA' (redirections) results from stats on main page
+    filteredResults = _.filter results, (item) ->
+      return item.score >= 0
+    return filteredResults
 
   get: ->
     stats =

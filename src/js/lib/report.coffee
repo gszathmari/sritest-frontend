@@ -110,6 +110,8 @@ class Report
     score = 100 - (data.tags.unsafe / data.tags.count) * 100
     data.score = score
     data.mark = switch
+      when @report.statusCode is "301" then "R"
+      when @report.statusCode is "302" then "R"
       when score >= 93 then "A"
       when score >= 83 then "B"
       when score >= 73 then "C"
@@ -117,6 +119,8 @@ class Report
       when isNaN(score) is true then "NA"
       else "F"
     data.color = switch
+      when @report.statusCode is "301" then "grey"
+      when @report.statusCode is "302" then "grey"
       when score >= 93 then "green"
       when score >= 83 then "olive"
       when score >= 73 then "yellow"
@@ -125,8 +129,8 @@ class Report
       else "red"
     data.statusCode = switch
       when @report.statusCode is "200" then "200 OK"
-      when @report.statusCode is "301" then "301 Moved Permanently"
-      when @report.statusCode is "302" then "302 Found"
+      when @report.statusCode is "301" then "301 Moved Permanently (Redirect)"
+      when @report.statusCode is "302" then "302 Found (Redirect)"
       when @report.statusCode is "404" then "404 Not Found"
       when @report.statusCode is "500" then "500 Internal Server Error"
       else @report.statusCode
