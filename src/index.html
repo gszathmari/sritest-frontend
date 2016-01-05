@@ -38,7 +38,7 @@
     <!-- Rollbar -->
     <!-- @include rollbar.txt -->
 
-    <!-- Segment.io tracking I. -->
+    <!-- Load Segment.io tracking library -->
     <!-- @include segmentio.txt -->
   <!-- @endif -->
 </head>
@@ -67,7 +67,7 @@
                     <input type="text" id="remote-url" placeholder="http://" autocomplete="off">
                   </div>
                   <div class="field">
-                    <button class="ui button" type="submit">Scan</button>
+                    <button class="ui disabled button" type="submit">Scan</button>
                   </div>
                 </div>
                 <div class="ui checkbox">
@@ -125,10 +125,9 @@
     window.jQuery || document.write('<script src="/js/vendor/jquery.min.js"><\/script>')
   </script>
   <script src="/js/vendor/semantic.min.js"></script>
-  <script src="/js/ui.js" async></script>
-  <script src="/js/main.js" defer></script>
+  <script src="/js/bundle.js" defer></script>
   <!-- @ifdef CI -->
-  <!-- Segment.io tracking II. -->
+  <!-- Segment.io tracking -->
   <script src="/js/track.js" defer></script>
   <!-- @endif -->
 

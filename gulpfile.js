@@ -324,7 +324,7 @@ gulp.task('coffee-watch', bundle);
 
 var customOpts = {
   entries: [
-      SRC+paths.jsDirectory+'/main.coffee'
+      SRC+paths.jsDirectory+'/bundle.coffee'
   ],
   debug: true,
   transform: [coffeeify, [hbsfy, {extensions: ['hbs']}]]
@@ -339,7 +339,7 @@ function bundle() {
   gutil.log('Compiling scripts ...');
   return b.bundle()
     .on('error', gutil.log.bind(gutil, 'Browserify Error'))
-    .pipe(source('main.js'))
+    .pipe(source('bundle.js'))
     .pipe(buffer())
     .pipe(sourcemaps.init({loadMaps: true}))
         .pipe($.uglify())
@@ -354,7 +354,7 @@ function bundle() {
 gulp.task('browserify-dist', function () {
   var opts = {
     entries: [
-        SRC+paths.jsDirectory+'/main.coffee'
+        SRC+paths.jsDirectory+'/bundle.coffee'
     ],
     debug: true,
     transform: [coffeeify, [hbsfy, {extensions: ['hbs']}]],
@@ -365,7 +365,7 @@ gulp.task('browserify-dist', function () {
   var b = browserify(opts);
   return b.bundle()
     .on('error', gutil.log.bind(gutil, 'Browserify Error'))
-    .pipe(source('main.js'))
+    .pipe(source('bundle.js'))
     .pipe(buffer())
     .pipe(sourcemaps.init({loadMaps: true}))
         .pipe($.uglify())
@@ -475,7 +475,7 @@ gulp.task('beautify', ['beautify-css']);
 /*
  * Serve files trough BrowserSync
  */
-gulp.task('html-watch', ['html-dist'], browserSync.reload);
+gulp.task('html-watch', ['html-dist', 'inject-code-snippets'], browserSync.reload);
 gulp.task('js-watch', ['coffee-dist'], browserSync.reload);
 gulp.task('less-watch', ['less-dist']);
 
