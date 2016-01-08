@@ -37,6 +37,7 @@ var through = require('through2');
 var log = gutil.log;
 var colors = gutil.colors;
 var nano = require('gulp-cssnano');
+var uglify = require('gulp-uglify');
 
 const siteUrl = 'https://sritest.io';
 
@@ -324,7 +325,7 @@ gulp.task('coffee-watch', bundle);
 
 var customOpts = {
   entries: [
-      SRC+paths.jsDirectory+'/bundle.coffee'
+      SRC+paths.jsDirectory+'/app/bundle.coffee'
   ],
   debug: true,
   transform: [coffeeify, [hbsfy, {extensions: ['hbs']}]]
@@ -342,7 +343,8 @@ function bundle() {
     .pipe(source('bundle.js'))
     .pipe(buffer())
     .pipe(sourcemaps.init({loadMaps: true}))
-        .pipe($.uglify())
+    //    .pipe(uglify())
+      //  .on('error', gutil.log)
     .pipe(sourcemaps.write('./'))
     .pipe(gulp.dest(DST+paths.jsDirectory))
     .pipe(browserSync.stream());
@@ -354,7 +356,7 @@ function bundle() {
 gulp.task('browserify-dist', function () {
   var opts = {
     entries: [
-        SRC+paths.jsDirectory+'/bundle.coffee'
+        SRC+paths.jsDirectory+'/app/bundle.coffee'
     ],
     debug: true,
     transform: [coffeeify, [hbsfy, {extensions: ['hbs']}]],
@@ -368,7 +370,8 @@ gulp.task('browserify-dist', function () {
     .pipe(source('bundle.js'))
     .pipe(buffer())
     .pipe(sourcemaps.init({loadMaps: true}))
-        .pipe($.uglify())
+    //    .pipe(uglify())
+      //  .on('error', gutil.log)
     .pipe(sourcemaps.write('./'))
     .pipe(gulp.dest(DST+paths.jsDirectory));
 });

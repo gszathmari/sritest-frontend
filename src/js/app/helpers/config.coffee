@@ -12,7 +12,7 @@ config =
       protocols: ['http','https']
     # Retry library options
     retry:
-      retries: 0
+      retries: 8
       factor: 2
       minTimeout: 1 * 1000
       maxTimeout: 120 * 1000

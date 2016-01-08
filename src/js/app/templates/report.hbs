@@ -1,0 +1,198 @@
+<!-- Results box -->
+<div id="results-box">
+
+  <!-- Summary of results -->
+  <div class="ui segment">
+    <div class="ui top attached label">Summary</div>
+    <div id="results-box-summary">
+
+      <div class="contents">
+
+        <div class="ui grid">
+
+          <div id="mark-box" class="three wide center aligned column">
+            <div class="ui centered inverted {{color}} card">
+              <div class="content {{color}}">
+                <h1 class="ui header noselect">
+                  {{mark}}
+                </h1>
+              </div>
+              <div class="extra noselect">
+                {{generateSummaryTagCount tags}}
+              </div>
+            </div>
+
+            <div class="ui small statistics">
+              <div class="{{color}} statistic">
+                <div class="value">
+                  {{mark}}
+                </div>
+                <div class="label">
+                  Grade
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="thirteen wide column">
+            <table class="ui large very basic fixed single line table">
+              <tbody>
+                <tr>
+                  <td class="three wide">
+                    <h5 class="ui header">Site</h5>
+                  </td>
+                  <td class="thirteen wide" title="{{url}}">
+                    <a href="{{url}}" target="_blank" ref="nofollow">{{truncateSummary url}}</a>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="three wide">
+                    <h5 class="ui header">Scan Date</h5>
+                  </td>
+                  <td class="thirteen wide">{{formatDate submitted}}</td>
+                </tr>
+                <tr>
+                  <td class="three wide">
+                    <h5 class="ui header">Status Code</h5>
+                  </td>
+                  <td class="thirteen wide">HTTP {{friendlyStatusCode statusCode}}</td>
+                </tr>
+                <tr>
+                  <td class="three wide">
+                    <h5 class="ui header">Scripts</h5>
+                  </td>
+                  <td class="thirteen wide">
+                    <i>Found <b>{{countUnsafeTags tags.scripts}}</b> unsafe scripts out of <b>{{countSafeTags tags.scripts}}</b> script tags</i>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="three wide">
+                    <h5 class="ui header">Stylesheets</h5>
+                  </td>
+                  <td class="thirteen wide">
+                    <i>Found <b>{{countUnsafeTags tags.stylesheets}}</b> unsafe stylesheets out of <b>{{countSafeTags tags.stylesheets}}</b> stylesheet tags</i>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+
+
+    </div>
+  </div>
+
+  <!-- Detailed results -->
+  <div class="ui segment">
+    <div class="ui top attached label">Results</div>
+    <div id="results-box-detailed">
+
+      <div id="results-detailed" class="contents">
+        <div class="ui medium left aligned header">Scripts {{generateButton tags.scripts.unsafe}}</div>
+        <table class="ui small selectable fixed celled compact table">
+          <thead>
+            <tr>
+              <th class="thirteen wide">Tag</th>
+              <th class="three wide">Result</th>
+            </tr>
+          </thead>
+          <tbody>
+            {{#if tags.total.scripts}}
+              {{#each tags.scripts.unsafe}}
+                <tr class="negative">
+                  <td>
+                    {{this}}
+                  </td>
+                  <td class="collapsing">
+                    <i class="icon close"></i> Missing SRI hash
+                  </td>
+                </tr>
+              {{/each}}
+              {{#each tags.scripts.safe}}
+                <tr class="positive">
+                  <td>
+                    {{this}}
+                  </td>
+                  <td class="collapsing">
+                    <i class="icon checkmark"></i> SRI hash detected
+                  </td>
+                </tr>
+              {{/each}}
+              {{#each tags.scripts.sameorigin}}
+                <tr>
+                  <td>
+                    {{this}}
+                  </td>
+                  <td class="collapsing">
+                    <i class="icon checkmark"></i> Same origin
+                  </td>
+                </tr>
+              {{/each}}
+            {{else}}
+              <tr>
+                <td colspan="2">
+                  No data
+                </td>
+              </tr>
+            {{/if}}
+          </tbody>
+        </table>
+
+        <div class="ui medium left aligned header">Stylesheets {{generateButton tags.stylesheets.unsafe}}</div>
+        <table class="ui small selectable fixed celled compact table">
+          <thead>
+            <tr>
+              <th class="thirteen wide">Tag</th>
+              <th class="three wide">Result</th>
+            </tr>
+          </thead>
+          <tbody>
+            {{#if tags.total.stylesheets}}
+              {{#each tags.stylesheets.unsafe}}
+                <tr class="negative">
+                  <td>
+                    {{this}}
+                  </td>
+                  <td class="collapsing">
+                    <i class="icon close"></i> Missing SRI hash
+                  </td>
+                </tr>
+              {{/each}}
+              {{#each tags.stylesheets.safe}}
+                <tr class="positive">
+                  <td>
+                    {{this}}
+                  </td>
+                  <td class="collapsing">
+                    <i class="icon checkmark"></i> SRI hash detected
+                  </td>
+                </tr>
+              {{/each}}
+              {{#each tags.stylesheets.sameorigin}}
+                <tr>
+                  <td>
+                    {{this}}
+                  </td>
+                  <td class="collapsing">
+                    <i class="icon checkmark"></i> Same origin
+                  </td>
+                </tr>
+              {{/each}}
+            {{else}}
+              <tr>
+                <td colspan="2">
+                  No data
+                </td>
+              </tr>
+            {{/if}}
+          </tbody>
+        </table>
+
+      </div>
+
+    </div>
+  </div>
+
+</div>

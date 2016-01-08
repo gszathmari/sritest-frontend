@@ -22,7 +22,7 @@
           </a>
         </div>
     </div>
-    <a class="item menu-about" href="https://sritest.io/about">About</a>
+    <a id="menu-about" class="item" href="https://sritest.io/about">About</a>
   </div>
 </div>
 

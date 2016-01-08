@@ -106,7 +106,7 @@
     .content.grey {
       background-color: @grey;
       &:hover {
-        background-color: saturate(@grey, 10%);
+        background-color: saturate(@grey, 2%);
       }
     }
     .content.green {
@@ -220,8 +220,8 @@
   }
 }
 
-// Main content
-#contents {
+// Content on About page
+#about-contents {
   margin-top: 8.5em;
   margin-bottom: 5.5em;
 }
@@ -272,9 +272,7 @@ form {
 
 // Align grades in stats box to center
 #stats-box {
-  .ui.table td.stats {
-    text-align: center;
-  }
+  margin-bottom: 32px;
 }
 
 // Break long line in tables of detailed results box

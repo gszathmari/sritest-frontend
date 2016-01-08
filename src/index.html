@@ -58,6 +58,10 @@
       <!-- URL input box -->
       <div id="url-input-box">
         <div class="ui attached blue inverted very padded segment">
+          <!-- Loader to be removed with JavaScript when the page is fully loaded -->
+          <div id="main-dimmer" class="ui active dimmer">
+            <div class="ui large text loader">Loading ...</div>
+          </div>
           <h1 class="ui header">Scan for Subresource Integrity (SRI)</h1>
           <div class="ui centered grid">
             <div class="twelve wide column">
@@ -67,7 +71,7 @@
                     <input type="text" id="remote-url" placeholder="http://" autocomplete="off">
                   </div>
                   <div class="field">
-                    <button class="ui disabled button" type="submit">Scan</button>
+                    <button class="ui button" type="submit">Scan</button>
                   </div>
                 </div>
                 <div class="ui checkbox">
@@ -84,29 +88,9 @@
         </div>
       </div>
 
-      <!-- Statistics box -->
-      <div id="stats-box" hidden></div>
+      <!-- Stats and reports are inserted here -->
+      <div id="main-content"></div>
 
-      <!-- Please Wait Loader -->
-
-      <!-- Results box -->
-      <div id="results-box" hidden>
-
-        <!-- Summary of results -->
-        <div class="ui segment">
-          <div class="ui top attached label">Summary</div>
-          <div id="results-box-summary">
-          </div>
-        </div>
-
-        <!-- Detailed results -->
-        <div class="ui segment">
-          <div class="ui top attached label">Results</div>
-          <div id="results-box-detailed">
-          </div>
-        </div>
-
-      </div>
     </div>
 
   </div>
@@ -114,18 +98,9 @@
   <!-- Footer -->
   <!-- @include footer.txt -->
 
-  <!-- @ifdef CI -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"
-      integrity="sha256-ImQvICV38LovIsvla2zykaCTdEh1Z801Y+DSop91wMU=
-                 sha384-8gBf6Y4YYq7Jx97PIqmTwLPin4hxIzQw5aDmUg/DDhul9fFpbbLcLh3nTIIDJKhx
-                 sha512-AFwxAkWdvxRd9qhYYp1qbeRZj6/iTNmJ2GFwcxsMOzwwTaRwz2a/2TX225Ebcj3whXte1WGQb38cXE5j7ZQw3g=="
-      crossorigin="anonymous"></script>
-  <!-- @endif -->
-  <script>
-    window.jQuery || document.write('<script src="/js/vendor/jquery.min.js"><\/script>')
-  </script>
-  <script src="/js/vendor/semantic.min.js"></script>
-  <script src="/js/bundle.js" defer></script>
+  <!-- Main application -->
+  <script src="/js/bundle.js"></script>
+
   <!-- @ifdef CI -->
   <!-- Segment.io tracking -->
   <script src="/js/track.js" defer></script>

@@ -1,4 +1,4 @@
-<div class="ui stackable equal width centered grid">
+<div id="stats-box" class="ui stackable equal width centered grid">
 
   <div class="computer tablet only column">
     <div class="ui left aligned segment">
@@ -14,7 +14,7 @@
             {{#each recent}}
             <tr>
               <td title="{{url}}"><a href="{{url}}" target="_blank" ref="nofollow">{{url}}</a></td>
-              <td class="stats {{color}} collapsing">{{stats.unsafe}} / {{stats.count}}</td>
+              <td class="stats {{color}} collapsing center aligned">{{stats.unsafe}} / {{stats.count}}</td>
             </tr>
             {{/each}}
           </tbody>
@@ -36,7 +36,7 @@
             {{#each best}}
             <tr>
               <td title="{{url}}"><a href="{{url}}" target="_blank" ref="nofollow">{{url}}</a></td>
-              <td class="stats {{color}}">{{mark}}</td>
+              <td class="stats {{color}} center aligned">{{mark}}</td>
             </tr>
             {{/each}}
           </tbody>
@@ -58,7 +58,7 @@
             {{#each worst}}
             <tr>
               <td title="{{url}}"><a href="{{url}}" target="_blank" ref="nofollow">{{url}}</a></td>
-              <td class="stats {{color}}">{{mark}}</td>
+              <td class="stats {{color}} center aligned">{{mark}}</td>
             </tr>
             {{/each}}
           </tbody>
