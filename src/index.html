@@ -102,6 +102,18 @@
   <script src="/js/bundle.js"></script>
 
   <!-- @ifdef CI -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"
+      integrity="sha256-ImQvICV38LovIsvla2zykaCTdEh1Z801Y+DSop91wMU=
+                 sha384-8gBf6Y4YYq7Jx97PIqmTwLPin4hxIzQw5aDmUg/DDhul9fFpbbLcLh3nTIIDJKhx
+                 sha512-AFwxAkWdvxRd9qhYYp1qbeRZj6/iTNmJ2GFwcxsMOzwwTaRwz2a/2TX225Ebcj3whXte1WGQb38cXE5j7ZQw3g=="
+      crossorigin="anonymous"></script>
+  <!-- @endif -->
+
+  <script>
+    window.jQuery || document.write('<script src="/js/vendor/jquery.min.js"><\/script>')
+  </script>
+
+  <!-- @ifdef CI -->
   <!-- Segment.io tracking -->
   <script src="/js/track.js" defer></script>
   <!-- @endif -->
