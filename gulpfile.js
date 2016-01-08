@@ -343,8 +343,6 @@ function bundle() {
     .pipe(source('bundle.js'))
     .pipe(buffer())
     .pipe(sourcemaps.init({loadMaps: true}))
-    //    .pipe(uglify())
-      //  .on('error', gutil.log)
     .pipe(sourcemaps.write('./'))
     .pipe(gulp.dest(DST+paths.jsDirectory))
     .pipe(browserSync.stream());
@@ -370,8 +368,8 @@ gulp.task('browserify-dist', function () {
     .pipe(source('bundle.js'))
     .pipe(buffer())
     .pipe(sourcemaps.init({loadMaps: true}))
-    //    .pipe(uglify())
-      //  .on('error', gutil.log)
+        .pipe(uglify())
+        .on('error', gutil.log)
     .pipe(sourcemaps.write('./'))
     .pipe(gulp.dest(DST+paths.jsDirectory));
 });
