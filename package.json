@@ -64,6 +64,7 @@
     "jquery": "^2.1.4",
     "jshint": "^2.8.0",
     "jshint-stylish": "^2.1.0",
+    "lodash": "^3.10.1",
     "main-bower-files": "^2.9.0",
     "moment": "^2.10.6",
     "request": "^2.67.0",
