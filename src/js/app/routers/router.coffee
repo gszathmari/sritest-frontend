@@ -16,7 +16,7 @@ class AppRouter extends Backbone.Router
     statistics.fetch()
     view = new StatisticsView {collection: statistics}
     # Revert title to original on root page
-    document.title = "Website SRI Scanner"
+    document.title = "sritest.io - SRI Hash Website Scanner"
 
   displayReport: (id) ->
     report = new Report {id: id}
