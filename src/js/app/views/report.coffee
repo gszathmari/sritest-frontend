@@ -2,6 +2,8 @@ $ = require 'jquery'
 Backbone = require 'backbone'
 HandleBars = require 'hbsfy/runtime'
 moment = require 'moment'
+$.fn.popup = require 'semantic-ui-popup'
+Backbone.$ = $
 
 ErrorMessageView = require '../views/errormessage.coffee'
 reportTemplate = require '../templates/report.hbs'
@@ -40,6 +42,9 @@ class ReportView extends Backbone.View
     document.title = "SRI Report on #{@model.get("url")}"
     # Scroll down to results
     $("body").animate({scrollTop: $("#results-box").offset().top - 100 }, 'slow')
+    # Activate tooltips
+    $("#grade-large").popup({position: 'right center', target: '.ui.header.grade'})
+    $("#grade-small").popup({position: 'right center'})
     return @
 
   displayError: (error) ->

@@ -68,7 +68,7 @@ class Report extends Backbone.Model
         report.tags.stylesheets.sameorigin.length
     # Calculate percentage of same / unsafe tags
     report.score = 100 - (report.tags.all.unsafe.length /
-      (report.tags.all.safe.length + report.tags.all.sameorigin.length)) * 100
+      (report.tags.all.unsafe.length + report.tags.all.safe.length + report.tags.all.sameorigin.length)) * 100
     # Calculate grade based on score
     report.mark = switch
       when report.statusCode is "301" then "R"

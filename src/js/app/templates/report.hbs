@@ -12,17 +12,17 @@
 
           <div id="mark-box" class="three wide center aligned column">
             <div class="ui centered inverted {{color}} card">
-              <div class="content {{color}}">
-                <h1 class="ui header noselect">
+              <div id="grade-large" class="content {{color}}" data-html="{{generateGradePopupContent tags}}" data-variation="small inverted">
+                <h1 class="ui header noselect grade">
                   {{mark}}
                 </h1>
               </div>
               <div class="extra noselect">
-                {{generateSummaryTagCount tags}}
+                {{generateSummaryTagCountLarge tags}}
               </div>
             </div>
 
-            <div class="ui small statistics">
+            <div id="grade-small" class="ui small statistics" data-content="{{generateSummaryTagCountSmall tags}}" data-variation="tiny inverted">
               <div class="{{color}} statistic">
                 <div class="value">
                   {{mark}}

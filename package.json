@@ -72,6 +72,7 @@
     "run-sequence": "^1.1.5",
     "semantic-ui-checkbox": "^2.1.7",
     "semantic-ui-dropdown": "^2.1.7",
+    "semantic-ui-popup": "^2.1.7",
     "semantic-ui-transition": "^2.1.7",
     "through2": "^2.0.0",
     "validator": "^4.4.0",
