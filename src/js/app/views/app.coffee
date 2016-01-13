@@ -58,7 +58,7 @@ class AppView extends Backbone.View
         form:
           url: targetURL
           hide: hideResults
-      request.post postOptions, (err, response, body) ->
+      request.post postOptions, (err, response, body) =>
         # Request is successful
         if not err and response.statusCode is 200
           # Parse API response

@@ -23,7 +23,7 @@ class ErrorMessageView extends Backbone.View
 
   # Remove all errors from the page
   clear: ->
-    $(@id).slideUp().empty()
+    $(@id).empty()
     $("#remote-url-field").removeClass("error")
 
 module.exports = ErrorMessageView
