@@ -58,7 +58,7 @@ HandleBars.registerHelper "countSafeTags", (tags) ->
 HandleBars.registerHelper "generateGradePopupContent", (tags) ->
   unsafe = tags.all.unsafe.length
   safe = tags.all.safe.length + tags.all.sameorigin.length
-  rate = 100 - (unsafe / (safe + unsafe)) * 100
+  rate = 100 - ((unsafe / (safe + unsafe)) * 100)
   rateFixed = rate.toFixed(1)
   html = """
     <h3 class="ui header">Grading</h3>
