@@ -1,5 +1,6 @@
 $ = require 'jquery'
 Backbone = require 'backbone'
+Backbone.$ = $
 
 statisticsTemplate = require '../templates/statistics.hbs'
 HandleBars = require '../helpers/handlebars.coffee'

@@ -1,6 +1,7 @@
 $ = require 'jquery'
 Backbone = require 'backbone'
 HandleBars = require 'hbsfy/runtime'
+Backbone.$ = $
 
 ErrorMessage = require '../models/errormessage.coffee'
 messageBoxTemplate = require '../templates/messagebox.hbs'

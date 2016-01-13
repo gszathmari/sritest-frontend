@@ -1,5 +1,6 @@
 $ = require 'jquery'
 Backbone = require 'backbone'
+Backbone.$ = $
 
 Report = require '../models/report.coffee'
 ReportView = require '../views/report.coffee'

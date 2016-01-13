@@ -1,20 +1,16 @@
 $ = require 'jquery'
 Backbone = require 'backbone'
-Backbone.$ = $
 request = require 'request'
 validator = require 'validator'
-Transition = require 'semantic-ui-transition'
-Checkbox = require 'semantic-ui-checkbox'
-Dropdown = require 'semantic-ui-dropdown'
+$.fn.transition = require 'semantic-ui-transition'
+$.fn.checkbox = require 'semantic-ui-checkbox'
+$.fn.dropdown = require 'semantic-ui-dropdown'
+Backbone.$ = $
 
 Router = require '../routers/router.coffee'
 normalizeURL = require '../helpers/normalizeurl.coffee'
 config = require '../helpers/config.coffee'
 ErrorMessageView = require '../views/errormessage.coffee'
-
-$.fn.checkbox = Checkbox
-$.fn.transition = Transition
-$.fn.dropdown = Dropdown
 
 class AppView extends Backbone.View
   el: $ 'body'
