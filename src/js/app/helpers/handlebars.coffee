@@ -38,8 +38,10 @@ HandleBars.registerHelper "generateSummaryTagCount", (tags) ->
   unsafe = tags.all.unsafe.length
   safe = tags.all.safe.length + tags.all.sameorigin.length
   rate = 100 - ((unsafe / (safe + unsafe)) * 100)
-  rateFixed = rate.toFixed(1)
-  html = "Rate: #{rateFixed}%"
+  rateFixed = switch
+    when isNaN(rate) then "not applicable"
+    else "#{rate.toFixed(1)}%"
+  html = "Rate: #{rateFixed}"
   return new HandleBars.SafeString html
 
 # Generate number of safe tags out of SRI protected and same-origin
@@ -52,13 +54,16 @@ HandleBars.registerHelper "generateGradePopupContent", (tags) ->
   safe = tags.all.safe.length + tags.all.sameorigin.length
   count = safe + unsafe
   rate = 100 - ((unsafe / (safe + unsafe)) * 100)
-  rateFixed = rate.toFixed(1)
+  rateFixed = switch
+    when isNaN(rate) then "not applicable as we detected URL redirection"
+    else "#{rate.toFixed(1)}%"
   grade = switch
-    when rateFixed < 63 then 'F'
-    when rateFixed < 73 then 'D'
-    when rateFixed < 83 then 'C'
-    when rateFixed < 93 then 'B'
-    else 'A'
+      when rate >= 93 then "A"
+      when rate >= 83 then "B"
+      when rate >= 73 then "C"
+      when rate >= 63 then "D"
+      when isNaN(rate) is true then "R"
+      else "F"
   html = """
     <h3 class="ui header">Grading</h3>
     <div class="ui list">
@@ -70,7 +75,7 @@ HandleBars.registerHelper "generateGradePopupContent", (tags) ->
     </div>
     <p>Your grade is based on the (1) number of unsafe assets and the (2) total number of assets<p>
     <p>We found #{unsafe} unsafe assets out of the total of #{count} assets</p>
-    <p>The rate of these two numbers is #{rateFixed}%, which provides your grade: '#{grade}'</p>
+    <p>The rate of these two numbers is #{rateFixed}, which provides your grade: '#{grade}'</p>
   """
   return html
 
