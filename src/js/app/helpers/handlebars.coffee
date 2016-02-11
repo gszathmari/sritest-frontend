@@ -55,27 +55,22 @@ HandleBars.registerHelper "generateGradePopupContent", (tags) ->
   count = safe + unsafe
   rate = 100 - ((unsafe / (safe + unsafe)) * 100)
   rateFixed = switch
-    when isNaN(rate) then "not applicable as we detected URL redirection"
+    when isNaN(rate) then "not applicable"
     else "#{rate.toFixed(1)}%"
-  grade = switch
-      when rate >= 93 then "A"
-      when rate >= 83 then "B"
-      when rate >= 73 then "C"
-      when rate >= 63 then "D"
-      when isNaN(rate) is true then "R"
-      else "F"
   html = """
     <h3 class="ui header">Grading</h3>
+    <p>Your grade is based on the (1) number of unsafe assets and the (2) total number of assets<p>
+    <p>We found #{unsafe} unsafe assets out of the total of #{count} assets</p>
+    <p>The rate of these two numbers is #{rateFixed}, which provides you the final grade as below:</p>
     <div class="ui list">
       <div class="item"><strong>A</strong> : 93% &mdash; 100%</div>
       <div class="item"><strong>B</strong> : 83% &mdash; 93%</div>
       <div class="item"><strong>C</strong> : 73% &mdash; 83%</div>
       <div class="item"><strong>D</strong> : 63% &mdash; 73%</div>
       <div class="item"><strong>F</strong> : 0% &mdash; 63%</div>
+      <div class="item"><strong>R</strong> : URL redirection was detected</div>
+      <div class="item"><strong>NA</strong> : Assets were not detected</div>
     </div>
-    <p>Your grade is based on the (1) number of unsafe assets and the (2) total number of assets<p>
-    <p>We found #{unsafe} unsafe assets out of the total of #{count} assets</p>
-    <p>The rate of these two numbers is #{rateFixed}, which provides your grade: '#{grade}'</p>
   """
   return html
 
