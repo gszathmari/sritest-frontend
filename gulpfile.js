@@ -158,7 +158,8 @@ gulp.task('copy-favicon', function() {
 gulp.task('robots', function () {
     return gulp.src(SRC+'index.html')
         .pipe(robots({
-            sitemap: siteUrl + '/sitemap.xml'
+            sitemap: siteUrl + '/sitemap.xml',
+            disallow: []
         }))
         .pipe(gulp.dest(DST));
 });
