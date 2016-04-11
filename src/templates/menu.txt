@@ -20,6 +20,18 @@
             Security Headers
             <i class="external icon"></i>
           </a>
+          <a class="item" href="https://weakdh.org/sysadmin.html" target="_blank">
+            Weak Diffie-Hellman
+            <i class="external icon"></i>
+          </a>
+          <a class="item" href="https://asafaweb.com" target="_blank">
+            ASP.NET Analyser
+            <i class="external icon"></i>
+          </a>
+          <a class="item" href="http://dnssec-debugger.verisignlabs.com" target="_blank">
+            DNSSEC Debugger
+            <i class="external icon"></i>
+          </a>
         </div>
     </div>
     <a id="menu-about" class="item" href="https://sritest.io/about">About</a>
@@ -41,8 +53,11 @@
           <div class="header">
             More Tests
           </div>
-          <a class="item" href="https://www.ssllabs.com/ssltest/" target="_blank">SSL Server Test</a>
-          <a class="item" href="https://securityheaders.io/" target="_blank">Security Headers</a>
+          <a class="item" href="https://www.ssllabs.com/ssltest/" target="_blank">SSL Server Test <i class="external icon"></i></a>
+          <a class="item" href="https://securityheaders.io/" target="_blank">Security Headers <i class="external icon"></i></a>
+          <a class="item" href="https://weakdh.org/sysadmin.html" target="_blank">Weak Diffie-Hellman <i class="external icon"></i></a>
+          <a class="item" href="https://asafaweb.com" target="_blank">ASP.NET Analyser <i class="external icon"></i></a>
+          <a class="item" href="http://dnssec-debugger.verisignlabs.com" target="_blank">DNSSEC Debugger <i class="external icon"></i></a>
         </div>
     </div>
   </div>
