@@ -5,10 +5,6 @@
   </div>
 
   <div class="right menu">
-    <!-- Flattr button -->
-    <div class="item">
-            <script id='fbbsuya'>(function(i){var f,s=document.getElementById(i);f=document.createElement('iframe');f.src='//button.flattr.com/view/?fid=wy60ok&button=compact&url='+encodeURIComponent(document.URL);f.title='Flattr';f.height=20;f.width=110;f.style.borderWidth=0;s.parentNode.insertBefore(f,s);})('fbbsuya');</script>
-    </div>
     <div class="ui dropdown item">
         More Tests <i class="dropdown icon"></i>
         <div class="menu">
@@ -70,6 +66,7 @@
         </div>
     </div>
     <a id="menu-about" class="item" href="https://sritest.io/about">About</a>
+    <a id="menu-donate" class="item" href="https://www.coinbase.com/gszathmari" rel="nofollow" target="_blank">Donate</a>
   </div>
 </div>
 
@@ -84,6 +81,7 @@
         <i class="content icon"></i>
         <div class="menu">
           <a class="item menu-about" href="https://sritest.io/about">About</a>
+          <a class="item menu-donate" href="https://www.coinbase.com/gszathmari" rel="nofollow" target="_blank">Donate</a>
           <div class="divider"></div>
           <div class="header">
             More Tests
